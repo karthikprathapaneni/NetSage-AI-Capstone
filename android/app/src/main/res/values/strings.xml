@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NetSage AI</string>
+    <string name="app_tagline">Intelligent Mobile Network Quality Prediction &amp; Adaptive Decision Support</string>
+    <string name="permission_rationale">NetSage AI uses Location and Phone State permissions exclusively to read local Wi-Fi frequencies (2.4/5/6 GHz), Wi-Fi SSID, and carrier cellular signal metrics (RSRP/RSRQ/CQI). No location data is ever transmitted or tracked.</string>
+</resources>

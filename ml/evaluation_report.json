@@ -1,0 +1,62 @@
+{
+  "timestamp": 1793285210.1130996,
+  "train_samples": 1320,
+  "test_samples": 480,
+  "features": [
+    "rtt_latency_norm",
+    "dns_latency_norm",
+    "signal_strength_norm",
+    "signal_bars_norm",
+    "downlink_bw_norm",
+    "network_type_norm",
+    "stability_index_norm",
+    "is_metered"
+  ],
+  "metrics": {
+    "baseline": {
+      "accuracy": 0.6042,
+      "macro_f1": 0.5942,
+      "poor_recall": 0.9605,
+      "confusion_matrix": [
+        [
+          146,
+          6,
+          0
+        ],
+        [
+          73,
+          75,
+          0
+        ],
+        [
+          0,
+          111,
+          69
+        ]
+      ]
+    },
+    "random_forest": {
+      "accuracy": 0.9917,
+      "macro_f1": 0.9911,
+      "poor_recall": 0.9868,
+      "prediction_latency_us": 4.67,
+      "confusion_matrix": [
+        [
+          150,
+          2,
+          0
+        ],
+        [
+          2,
+          146,
+          0
+        ],
+        [
+          0,
+          0,
+          180
+        ]
+      ]
+    }
+  }
+}

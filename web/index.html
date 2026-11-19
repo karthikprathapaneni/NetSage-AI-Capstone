@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NetSage AI · Network Intelligence Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TOKENS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root {
+  /* Palette */
+  --white: #ffffff;
+  --gray-25:  #fcfcfd;
+  --gray-50:  #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+
+  --blue-50:  #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+
+  --emerald-50:  #ecfdf5;
+  --emerald-100: #d1fae5;
+  --emerald-500: #10b981;
+  --emerald-600: #059669;
+  --emerald-700: #047857;
+
+  --amber-50:  #fffbeb;
+  --amber-100: #fef3c7;
+  --amber-500: #f59e0b;
+  --amber-600: #d97706;
+
+  --red-50:  #fef2f2;
+  --red-100: #fee2e2;
+  --red-500: #ef4444;
+  --red-600: #dc2626;
+
+  --violet-50:  #f5f3ff;
+  --violet-100: #ede9fe;
+  --violet-500: #8b5cf6;
+  --violet-600: #7c3aed;
+
+  /* Semantic */
+  --bg:         var(--gray-50);
+  --surface:    var(--white);
+  --surface-2:  var(--gray-50);
+  --surface-3:  var(--gray-100);
+  --border:     var(--gray-200);
+  --border-2:   var(--gray-100);
+
+  --text-primary:   var(--gray-900);
+  --text-secondary: var(--gray-600);
+  --text-tertiary:  var(--gray-400);
+
+  --accent:         var(--blue-600);
+  --accent-bg:      var(--blue-50);
+  --accent-border:  var(--blue-200);
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / .05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / .08), 0 1px 2px -1px rgb(0 0 0 / .06);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / .07), 0 2px 4px -2px rgb(0 0 0 / .05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / .07), 0 4px 6px -4px rgb(0 0 0 / .05);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / .08), 0 8px 10px -6px rgb(0 0 0 / .05);
+
+  /* Spacing */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 18px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BASE RESET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 14px; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NAVBAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar {
+  position: sticky; top: 0; z-index: 200;
+  height: 56px;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  gap: 16px;
+}
+
+.nb-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.nb-logo {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.3px;
+  box-shadow: 0 1px 4px rgb(37 99 235 / .35);
+}
+
+.nb-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -.3px;
+}
+
+.nb-name em {
+  font-style: normal;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nb-sub {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-weight: 400;
+  margin-top: 1px;
+  letter-spacing: 0;
+  max-width: 320px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nb-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Live badge */
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px 4px 8px;
+  border-radius: 999px;
+  background: var(--emerald-50);
+  border: 1px solid var(--emerald-100);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--emerald-700);
+  letter-spacing: -.1px;
+}
+
+.live-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--emerald-500);
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,100% { opacity:.4; transform:scale(.8); }
+  50%      { opacity:1;  transform:scale(1.2); }
+}
+
+.nb-clock {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  letter-spacing: .3px;
+  min-width: 60px;
+  text-align: right;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PAGE SHELL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.shell {
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 24px 20px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION LABEL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: .7px;
+  margin-bottom: 2px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   STAT STRIP  (top overview bar)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-cell {
+  padding: 18px 22px;
+  border-right: 1px solid var(--border-2);
+  transition: background .15s;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-cell:hover { background: var(--gray-25); }
+
+.stat-eyebrow {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-eyebrow svg {
+  flex-shrink: 0;
+  opacity: .5;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -.5px;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.stat-tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+}
+
+.tag-blue   { background: var(--blue-100);    color: var(--blue-700);    }
+.tag-green  { background: var(--emerald-100); color: var(--emerald-700); }
+.tag-amber  { background: var(--amber-100);   color: var(--amber-600);   }
+.tag-red    { background: var(--red-100);     color: var(--red-600);     }
+.tag-violet { background: var(--violet-100);  color: var(--violet-600);  }
+
+.stat-sub {
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+  margin-top: 5px;
+  font-weight: 400;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TWO-COL LAYOUT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .stat-strip { grid-template-columns: 1fr 1fr; }
+  .stat-cell  { border-right: none; border-bottom: 1px solid var(--border-2); }
+  .cols       { grid-template-columns: 1fr; }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CARD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-2);
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -.2px;
+}
+
+.card-icon {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.icon-blue   { background: var(--blue-50);   }
+.icon-violet { background: var(--violet-50); }
+.icon-green  { background: var(--emerald-50);}
+
+.card-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  letter-spacing: -.1px;
+}
+
+.card-body { padding: 18px 20px; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   METRIC TILES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.tile {
+  background: var(--gray-25);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-lg);
+  padding: 13px 15px;
+  cursor: default;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+
+.tile:hover {
+  border-color: var(--gray-300);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.tile-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: .55px;
+  margin-bottom: 7px;
+}
+
+.tile-value {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-primary);
+  letter-spacing: -.8px;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.tile-unit {
+  font-size: 11px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-tertiary);
+  letter-spacing: 0;
+}
+
+.tile-sub {
+  margin-top: 5px;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   DIVIDER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.divider {
+  height: 1px;
+  background: var(--border-2);
+  margin: 16px 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CHART
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.chart-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.chart-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.seg-ctrl {
+  display: flex;
+  background: var(--gray-100);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  gap: 0;
+}
+
+.seg-btn {
+  border: none;
+  background: transparent;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 5px 11px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -.1px;
+  transition: all .15s;
+  border-radius: 0;
+}
+
+.seg-btn:hover  { background: var(--gray-200); color: var(--text-primary); }
+.seg-btn.active {
+  background: var(--white);
+  color: var(--blue-600);
+  font-weight: 700;
+  box-shadow: var(--shadow-xs);
+}
+
+.chart-stats-row {
+  display: flex;
+  gap: 1px;
+  background: var(--border-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.cs-item {
+  flex: 1;
+  background: var(--white);
+  padding: 7px 10px;
+  text-align: center;
+}
+
+.cs-label {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  display: block;
+}
+
+.cs-val {
+  font-size: 12.5px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  display: block;
+  margin-top: 2px;
+  color: var(--text-primary);
+}
+
+canvas#telemetryChart {
+  display: block;
+  width: 100%;
+  height: 148px;
+  border-radius: var(--r-md);
+  background: var(--gray-25);
+  border: 1px solid var(--border-2);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GAUGE ROW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.gauge-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.gauge-card {
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-lg);
+  background: var(--gray-25);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ring {
+  --sz: 60px;
+  --stroke: 7px;
+  --progress: 85;
+  --color: var(--emerald-500);
+  width: var(--sz);
+  height: var(--sz);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ring-bg {
+  fill: none;
+  stroke: var(--gray-200);
+  stroke-width: var(--stroke);
+}
+
+.ring-fg {
+  fill: none;
+  stroke: var(--color);
+  stroke-width: var(--stroke);
+  stroke-linecap: round;
+  stroke-dasharray: 157; /* circumference ≈ 2π×25 */
+  stroke-dashoffset: calc(157 - (157 * var(--progress) / 100));
+  transition: stroke-dashoffset .6s cubic-bezier(.4,0,.2,1), stroke .4s;
+}
+
+.ring-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-primary);
+}
+
+.gauge-info h4 {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 4px;
+}
+
+.gauge-info p {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--emerald-600);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ACTION BANNER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.action-box {
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.action-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--blue-50);
+  border-bottom: 1px solid var(--blue-100);
+  gap: 10px;
+}
+
+.action-key {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--blue-700);
+  letter-spacing: .3px;
+  background: var(--blue-100);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.action-conf {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.action-body {
+  padding: 12px 14px;
+  background: var(--white);
+}
+
+.action-body h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -.2px;
+  margin-bottom: 4px;
+}
+
+.action-body p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TRENDS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.trend-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.trend-item {
+  background: var(--gray-25);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-md);
+  padding: 10px 12px;
+}
+
+.trend-item dt {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 3px;
+}
+
+.trend-item dd {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  list-style: none;
+  line-height: 1.4;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   VECTOR BOX
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.vector-wrap dt {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 5px;
+}
+
+.vector-code {
+  background: var(--gray-100);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 10px 13px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--blue-700);
+  overflow-x: auto;
+  white-space: nowrap;
+  letter-spacing: -.1px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TOOLBAR  (bottom)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.toolbar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Button base */
+button, .seg-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .15s;
+  white-space: nowrap;
+}
+
+.btn {
+  padding: 8px 15px;
+  border-radius: var(--r-md);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -.1px;
+}
+
+.btn-primary {
+  background: var(--blue-600);
+  color: #fff;
+  box-shadow: 0 1px 3px rgb(37 99 235 / .3), inset 0 1px 0 rgb(255 255 255 / .1);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--blue-700);
+  box-shadow: 0 4px 10px rgb(37 99 235 / .3);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+
+.btn-outline {
+  background: var(--white);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xs);
+}
+
+.btn-outline:hover {
+  background: var(--gray-50);
+  color: var(--text-primary);
+  border-color: var(--gray-300);
+}
+
+.btn-danger {
+  background: var(--white);
+  color: var(--red-600);
+  border: 1px solid var(--red-100);
+}
+
+.btn-danger:hover {
+  background: var(--red-50);
+  border-color: #fca5a5;
+}
+
+/* Select */
+select {
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: var(--r-md);
+  outline: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-xs);
+  transition: border-color .15s;
+}
+
+select:focus { border-color: var(--blue-500); }
+
+/* Toggle */
+.toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+}
+
+input[type="checkbox"] {
+  width: 15px; height: 15px;
+  accent-color: var(--blue-600);
+  cursor: pointer;
+}
+
+/* Spinner */
+.spinner {
+  display: none;
+  width: 12px; height: 12px;
+  border: 2px solid rgba(255,255,255,.25);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin .65s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FOOTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  padding-bottom: 4px;
+  line-height: 1.6;
+}
+
+.footer strong { color: var(--text-secondary); font-weight: 600; }
+</style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════════ -->
+<nav class="navbar">
+  <div class="nb-brand">
+    <div class="nb-logo">NS</div>
+    <div>
+      <div class="nb-name">NetSage <em>AI</em></div>
+      <div class="nb-sub">Network Quality Prediction &amp; Adaptive Connectivity</div>
+    </div>
+  </div>
+  <div class="nb-right">
+    <div class="live-badge">
+      <div class="live-dot" id="live-dot"></div>
+      <span id="live-status-text">Live</span>
+    </div>
+    <div class="nb-clock" id="nb-clock">--:--:--</div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE
+═══════════════════════════════════════════════════ -->
+<div class="shell">
+
+  <!-- ── STAT STRIP ──────────────────────────────── -->
+  <div class="stat-strip">
+
+    <div class="stat-cell">
+      <div class="stat-eyebrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 12h20M12 2l10 10-10 10"/></svg>
+        Transport
+      </div>
+      <div class="stat-value" id="strip-transport">
+        Wi-Fi 802.11ax
+        <span class="stat-tag tag-blue" id="strip-tag">WIFI</span>
+      </div>
+      <div class="stat-sub" id="strip-validated">Validated · Unmetered</div>
+    </div>
+
+    <div class="stat-cell">
+      <div class="stat-eyebrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg>
+        Interface
+      </div>
+      <div class="stat-value" style="font-size:17px;" id="strip-iface">wlan0</div>
+      <div class="stat-sub" id="strip-ap">NetSage-5G · 5 GHz</div>
+    </div>
+
+    <div class="stat-cell">
+      <div class="stat-eyebrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Quality Score
+      </div>
+      <div class="stat-value" style="font-size:28px; font-family:'JetBrains Mono',monospace; letter-spacing:-1px;" id="strip-quality">
+        85
+        <span style="font-size:13px;font-weight:500;color:var(--text-tertiary);font-family:'Inter',sans-serif;">/100</span>
+      </div>
+      <div class="stat-sub" id="strip-quality-sub" style="color:var(--emerald-600);font-weight:500;">Excellent Link</div>
+    </div>
+
+    <div class="stat-cell">
+      <div class="stat-eyebrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l1.5 4.5H18l-3.75 2.75L15.75 14 12 11.25 8.25 14l1.5-4.75L6 6.5h4.5z"/></svg>
+        Last Updated
+      </div>
+      <div class="stat-value" style="font-size:15px;font-family:'JetBrains Mono',monospace;letter-spacing:.2px;" id="strip-updated">Just now</div>
+      <div class="stat-sub">Auto-refresh every 3 s</div>
+    </div>
+
+  </div><!-- /stat-strip -->
+
+  <!-- ── TWO-COL ──────────────────────────────────── -->
+  <div class="cols">
+
+    <!-- LEFT: Telemetry -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <div class="card-icon icon-blue">📡</div>
+          Real-Time Telemetry
+        </div>
+        <span class="card-badge tag-blue" id="card-net-type">Wi-Fi</span>
+      </div>
+      <div class="card-body">
+
+        <div class="tile-grid">
+
+          <div class="tile">
+            <div class="tile-label">RTT / HTTP Latency</div>
+            <div class="tile-value" id="val-latency">—<span class="tile-unit"> ms</span></div>
+            <div class="tile-sub" id="val-dns">DNS — ms · HTTP — ms</div>
+          </div>
+
+          <div class="tile">
+            <div class="tile-label">Downlink Throughput</div>
+            <div class="tile-value" id="val-throughput">—<span class="tile-unit"> Mbps</span></div>
+            <div class="tile-sub" id="val-dl-est">Link estimate: —</div>
+          </div>
+
+          <div class="tile">
+            <div class="tile-label">Signal Strength</div>
+            <div class="tile-value" id="val-signal">—<span class="tile-unit"> dBm</span></div>
+            <div class="tile-sub" id="val-bars">—/4 bars · —</div>
+          </div>
+
+          <div class="tile">
+            <div class="tile-label">Uplink Capacity</div>
+            <div class="tile-value" id="val-uplink">—<span class="tile-unit"> Mbps</span></div>
+            <div class="tile-sub" id="val-link-spd">Link speed: —</div>
+          </div>
+
+          <div class="tile">
+            <div class="tile-label">Metering</div>
+            <div class="tile-value" style="font-size:17px;" id="val-metered">—</div>
+            <div class="tile-sub">Background data policy</div>
+          </div>
+
+          <div class="tile">
+            <div class="tile-label">RF Band</div>
+            <div class="tile-value" style="font-size:17px;" id="val-freq">—</div>
+            <div class="tile-sub" id="val-freq-sub">Channel info</div>
+          </div>
+
+        </div><!-- /tile-grid -->
+
+        <div class="divider"></div>
+
+        <!-- Chart -->
+        <div class="chart-toolbar">
+          <span class="chart-label">Telemetry Trend</span>
+          <div class="seg-ctrl">
+            <button class="seg-btn active" onclick="switchMetric('latency', event)">Latency</button>
+            <button class="seg-btn"        onclick="switchMetric('signal', event)">Signal</button>
+            <button class="seg-btn"        onclick="switchMetric('throughput', event)">Throughput</button>
+          </div>
+        </div>
+
+        <div class="chart-stats-row">
+          <div class="cs-item">
+            <span class="cs-label">Min</span>
+            <span class="cs-val" id="chart-min">—</span>
+          </div>
+          <div class="cs-item">
+            <span class="cs-label">Average</span>
+            <span class="cs-val" id="chart-avg" style="color:var(--blue-600);">—</span>
+          </div>
+          <div class="cs-item">
+            <span class="cs-label">Max</span>
+            <span class="cs-val" id="chart-max">—</span>
+          </div>
+        </div>
+
+        <canvas id="telemetryChart"></canvas>
+
+      </div>
+    </div><!-- /LEFT card -->
+
+    <!-- RIGHT: Decision Engine -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <div class="card-icon icon-violet">🧠</div>
+          Adaptive Decision Engine
+        </div>
+        <span class="card-badge tag-violet" id="ml-badge">Heuristic</span>
+      </div>
+      <div class="card-body">
+
+        <!-- Gauge Row -->
+        <div class="gauge-row">
+
+          <div class="gauge-card">
+            <div class="ring" id="ring-quality" style="--progress:85;--color:var(--emerald-500);">
+              <svg viewBox="0 0 60 60">
+                <circle class="ring-bg" cx="30" cy="30" r="25"/>
+                <circle class="ring-fg" cx="30" cy="30" r="25" id="ring-quality-arc"/>
+              </svg>
+              <div class="ring-label" id="val-quality-score">85</div>
+            </div>
+            <div class="gauge-info">
+              <h4>Quality Score</h4>
+              <p id="quality-grade">Excellent Link</p>
+            </div>
+          </div>
+
+          <div class="gauge-card">
+            <div class="ring" id="ring-stability" style="--progress:92;--color:var(--blue-500);">
+              <svg viewBox="0 0 60 60">
+                <circle class="ring-bg" cx="30" cy="30" r="25"/>
+                <circle class="ring-fg" cx="30" cy="30" r="25" id="ring-stab-arc" style="stroke:var(--blue-500);"/>
+              </svg>
+              <div class="ring-label" id="val-stability">92</div>
+            </div>
+            <div class="gauge-info">
+              <h4>Stability Index</h4>
+              <p id="stability-grade" style="color:var(--blue-600);">Low Jitter</p>
+            </div>
+          </div>
+
+        </div><!-- /gauge-row -->
+
+        <!-- Action -->
+        <div class="action-box" id="action-box">
+          <div class="action-top-bar" id="action-top-bar">
+            <span class="action-key" id="val-action-key">MAINTAIN_CURRENT</span>
+            <span class="action-conf" id="val-confidence">Confidence: 94%</span>
+          </div>
+          <div class="action-body">
+            <h3 id="val-action-title">Maintain Current Link</h3>
+            <p id="val-action-desc">Network connection exhibits optimal throughput, low latency, and stable signal parameters.</p>
+          </div>
+        </div>
+
+        <!-- Trends -->
+        <dl class="trend-row">
+          <div class="trend-item">
+            <dt>Latency Drift</dt>
+            <dd id="trend-latency">Stable</dd>
+          </div>
+          <div class="trend-item">
+            <dt>Signal Trend</dt>
+            <dd id="trend-signal">Excellent</dd>
+          </div>
+        </dl>
+
+        <!-- ML Vector -->
+        <dl class="vector-wrap">
+          <dt>ML Input Feature Vector (8 dimensions)</dt>
+          <div class="vector-code" id="val-feature-vector">[ awaiting probe data… ]</div>
+        </dl>
+
+      </div>
+    </div><!-- /RIGHT card -->
+
+  </div><!-- /cols -->
+
+  <!-- ── TOOLBAR ──────────────────────────────────── -->
+  <div class="toolbar">
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="runActiveProbe()" id="probe-btn">
+        <span class="spinner" id="probe-spinner"></span>
+        <span>⚡ Run Active Probe</span>
+      </button>
+      <button class="btn btn-outline" onclick="fetchStatus()">↻ Refresh</button>
+      <button class="btn btn-danger"  onclick="clearHistory()">🗑 Clear History</button>
+    </div>
+
+    <div class="btn-group" style="flex-wrap:wrap;">
+      <label for="scenario-select" style="font-size:12px;color:var(--text-secondary);font-weight:600;">Simulate:</label>
+      <select id="scenario-select" onchange="simulateScenario(this.value)">
+        <option value="wifi_normal">🟢  Optimal Wi-Fi 5 GHz</option>
+        <option value="wifi_handoff_trigger">🟡  Weak Wi-Fi — Handoff Trigger</option>
+        <option value="cellular_5g">⚡  5G NR Standalone</option>
+        <option value="cellular_metered_poor">🟠  Poor LTE — Throttle Mode</option>
+        <option value="offline">🔴  Complete Offline</option>
+      </select>
+      <label class="toggle-wrap" for="auto-poll-chk">
+        <input type="checkbox" id="auto-poll-chk" checked onchange="toggleAutoPoll(this.checked)">
+        Auto-poll (3 s)
+      </label>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ───────────────────────────────────── -->
+  <div class="footer">
+    <strong>NetSage AI</strong> · Intelligent Mobile Network Quality Prediction &amp; Adaptive Connectivity Decision Support System<br>
+    B.E. CSE–AI · Mobile Computing Capstone Project
+  </div>
+
+</div><!-- /shell -->
+
+<!-- ═══════════════════════════════════════════════════
+     SCRIPT
+═══════════════════════════════════════════════════ -->
+<script>
+/* ── State ─────────────────────────────────────────── */
+let currentMetric  = 'latency';
+let historyPoints  = [];
+let autoPollTimer  = null;
+
+/* ── Clock ─────────────────────────────────────────── */
+(function tickClock() {
+  document.getElementById('nb-clock').textContent =
+    new Date().toLocaleTimeString('en-IN', { hour12: false });
+  setTimeout(tickClock, 1000);
+})();
+
+/* ── API ───────────────────────────────────────────── */
+async function fetchStatus() {
+  try { renderDashboard(await (await fetch('/api/status')).json()); }
+  catch (e) { console.error('Status error', e); }
+}
+
+async function runActiveProbe() {
+  const btn = document.getElementById('probe-btn');
+  const sp  = document.getElementById('probe-spinner');
+  sp.style.display = 'inline-block';
+  btn.disabled = true;
+  try { renderDashboard(await (await fetch('/api/probe', { method:'POST' })).json()); }
+  catch (e) { alert('Probe error: ' + e.message); }
+  finally { sp.style.display = 'none'; btn.disabled = false; }
+}
+
+async function simulateScenario(val) {
+  try {
+    renderDashboard(await (await fetch('/api/simulate', {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json' },
+      body: JSON.stringify({ scenario: val })
+    })).json());
+  } catch (e) { console.error('Sim error', e); }
+}
+
+async function clearHistory() {
+  await fetch('/api/clear', { method:'POST' });
+  historyPoints = [];
+  fetchStatus();
+}
+
+/* ── Render ────────────────────────────────────────── */
+function renderDashboard({ observation: obs, decision: dec, history }) {
+  historyPoints = history || [];
+
+  /* Stat strip */
+  document.getElementById('strip-transport').innerHTML =
+    `${obs.transport_name} <span class="stat-tag tag-blue" id="strip-tag">${obs.network_type}</span>`;
+  document.getElementById('strip-validated').textContent =
+    `${obs.is_validated ? 'Validated' : 'Unvalidated'} · ${obs.is_metered ? 'Metered' : 'Unmetered'}`;
+  document.getElementById('strip-iface').textContent   = obs.interface_name || '—';
+  document.getElementById('strip-ap').textContent      =
+    obs.wifi_ssid ? `${obs.wifi_ssid} · ${obs.wifi_freq_mhz >= 5000 ? '5 GHz' : '2.4 GHz'}`
+                  : (obs.carrier || '—');
+  document.getElementById('strip-updated').textContent =
+    new Date().toLocaleTimeString('en-IN', { hour12:false });
+  document.getElementById('card-net-type').textContent = obs.network_type;
+
+  /* Tiles */
+  const L = obs.latency_ms;
+  document.getElementById('val-latency').innerHTML =
+    `${L !== null ? L : '—'}<span class="tile-unit"> ms</span>`;
+  document.getElementById('val-dns').textContent =
+    `DNS ${obs.dns_ms !== null ? obs.dns_ms : '—'} ms · HTTP ${obs.http_ms !== null ? obs.http_ms : '—'} ms`;
+
+  document.getElementById('val-throughput').innerHTML =
+    `${obs.throughput_mbps !== null ? obs.throughput_mbps : '—'}<span class="tile-unit"> Mbps</span>`;
+  document.getElementById('val-dl-est').textContent =
+    `Link estimate: ${obs.downstream_kbps ? (obs.downstream_kbps/1000).toFixed(1)+' Mbps' : '—'}`;
+
+  document.getElementById('val-signal').innerHTML =
+    `${obs.signal_dbm !== null ? obs.signal_dbm : '—'}<span class="tile-unit"> dBm</span>`;
+  document.getElementById('val-bars').textContent =
+    `${obs.signal_level}/4 bars · ${obs.signal_desc ?? '—'}`;
+
+  document.getElementById('val-uplink').innerHTML =
+    `${obs.upstream_kbps ? (obs.upstream_kbps/1000).toFixed(1) : '—'}<span class="tile-unit"> Mbps</span>`;
+  document.getElementById('val-link-spd').textContent =
+    `Link speed: ${obs.wifi_link_speed_mbps ?? '—'} Mbps`;
+
+  const metEl = document.getElementById('val-metered');
+  metEl.textContent   = obs.is_metered ? 'Metered' : 'Unmetered';
+  metEl.style.color   = obs.is_metered ? 'var(--amber-600)' : 'var(--emerald-600)';
+
+  document.getElementById('val-freq').textContent =
+    obs.wifi_freq_mhz ? (obs.wifi_freq_mhz >= 5000 ? '5 GHz' : '2.4 GHz') : 'Cellular';
+  document.getElementById('val-freq-sub').textContent =
+    obs.wifi_freq_mhz ? `${obs.wifi_freq_mhz} MHz channel` : 'Carrier spectrum';
+
+  /* ── Decision Engine ─────────────────────────────── */
+  const q = dec.quality_score;
+  document.getElementById('strip-quality').innerHTML =
+    `${q}<span style="font-size:13px;font-weight:500;color:var(--text-tertiary);font-family:'Inter',sans-serif;">/100</span>`;
+
+  /* Colour logic */
+  let qColor   = 'var(--emerald-500)';
+  let qGrade   = 'Excellent Link';
+  let qAccent  = 'var(--emerald-600)';
+  let abgColor = 'var(--blue-50)';
+  let abdColor = 'var(--blue-100)';
+  let akColor  = 'var(--blue-700)';
+  let akBg     = 'var(--blue-100)';
+
+  if (q < 40) {
+    qColor = 'var(--red-500)'; qGrade = 'Critical / Degraded'; qAccent = 'var(--red-600)';
+    abgColor='var(--red-50)'; abdColor='var(--red-100)'; akColor='var(--red-700)'; akBg='var(--red-100)';
+  } else if (q < 70) {
+    qColor = 'var(--amber-500)'; qGrade = 'Fair / Fluctuating'; qAccent = 'var(--amber-600)';
+    abgColor='var(--amber-50)'; abdColor='var(--amber-100)'; akColor='var(--amber-600)'; akBg='var(--amber-100)';
+  }
+
+  /* SVG ring for quality */
+  const CIRC = 157;
+  document.getElementById('ring-quality-arc').style.strokeDashoffset = CIRC - (CIRC * q / 100);
+  document.getElementById('ring-quality-arc').style.stroke = qColor;
+  document.getElementById('val-quality-score').textContent = q;
+  const qgEl = document.getElementById('quality-grade');
+  qgEl.textContent = qGrade; qgEl.style.color = qAccent;
+  document.getElementById('strip-quality-sub').textContent = qGrade;
+  document.getElementById('strip-quality-sub').style.color = qAccent;
+
+  /* Stability ring */
+  const si = dec.stability_index;
+  document.getElementById('ring-stab-arc').style.strokeDashoffset = CIRC - (CIRC * si / 100);
+  document.getElementById('val-stability').textContent = si;
+  document.getElementById('stability-grade').textContent = si > 70 ? 'Stable Signal' : 'High Jitter';
+
+  /* Action box theming */
+  const topBar = document.getElementById('action-top-bar');
+  topBar.style.background    = abgColor;
+  topBar.style.borderColor   = abdColor;
+  const akEl = document.getElementById('val-action-key');
+  akEl.style.color      = akColor;
+  akEl.style.background = akBg;
+  akEl.textContent      = dec.action_key;
+
+  document.getElementById('val-confidence').textContent   = `Confidence: ${Math.round(dec.confidence * 100)}%`;
+  document.getElementById('val-action-title').textContent = dec.action_title;
+  document.getElementById('val-action-desc').textContent  = dec.action_rationale;
+
+  document.getElementById('trend-latency').textContent = dec.latency_trend;
+  document.getElementById('trend-signal').textContent  = dec.signal_trend;
+
+  document.getElementById('val-feature-vector').textContent =
+    dec.feature_vector ? JSON.stringify(dec.feature_vector) : '—';
+  document.getElementById('ml-badge').textContent =
+    (dec.ml_status || '').includes('ML') ? 'ML Active' : 'Heuristic';
+
+  drawChart();
+}
+
+/* ── Chart ─────────────────────────────────────────── */
+function switchMetric(m, evt) {
+  currentMetric = m;
+  document.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+  if (evt && evt.target) evt.target.classList.add('active');
+  drawChart();
+}
+
+function drawChart() {
+  const canvas = document.getElementById('telemetryChart');
+  const ctx    = canvas.getContext('2d');
+  const dpr    = window.devicePixelRatio || 1;
+  const rect   = canvas.getBoundingClientRect();
+  const W = rect.width, H = 148;
+
+  canvas.width  = W * dpr;
+  canvas.height = H * dpr;
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, W, H);
+
+  const pts  = [...historyPoints].reverse();
+  const vals = pts.map(p => {
+    if (currentMetric === 'latency')    return p.latency_ms    ?? 0;
+    if (currentMetric === 'signal')     return p.signal_dbm    ?? -90;
+    return p.throughput_mbps ?? (p.downstream_kbps ? p.downstream_kbps / 1000 : 0);
+  });
+
+  if (vals.length < 2) {
+    ctx.fillStyle = '#9ca3af';
+    ctx.font = '500 12px Inter, system-ui';
+    ctx.textAlign = 'center';
+    ctx.fillText('Awaiting multiple samples…', W / 2, H / 2);
+    return;
+  }
+
+  const mn = Math.min(...vals), mx = Math.max(...vals), av = vals.reduce((a,b)=>a+b,0)/vals.length;
+  const unit = currentMetric==='latency' ? 'ms' : currentMetric==='signal' ? 'dBm' : 'Mbps';
+  document.getElementById('chart-min').textContent = `${mn.toFixed(1)} ${unit}`;
+  document.getElementById('chart-avg').textContent = `${av.toFixed(1)} ${unit}`;
+  document.getElementById('chart-max').textContent = `${mx.toFixed(1)} ${unit}`;
+
+  const lineColor = currentMetric==='latency' ? '#2563eb'
+                  : currentMetric==='signal'   ? '#059669'
+                  : '#7c3aed';
+
+  /* Grid lines */
+  ctx.strokeStyle = '#f3f4f6';
+  ctx.lineWidth   = 1;
+  [1,2,3].forEach(i => {
+    const y = (H / 4) * i;
+    ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
+  });
+
+  const PAD   = 14;
+  const range = mx === mn ? 1 : mx - mn;
+  const sx    = (W - PAD*2) / (vals.length - 1);
+  const coords = vals.map((v,i) => ({
+    x: PAD + i * sx,
+    y: H - 14 - ((v - mn) / range) * (H - 32)
+  }));
+
+  /* Smooth bezier fill */
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, lineColor + '28');
+  grad.addColorStop(1, lineColor + '00');
+
+  ctx.beginPath();
+  ctx.moveTo(coords[0].x, H);
+  ctx.lineTo(coords[0].x, coords[0].y);
+  for (let i = 1; i < coords.length; i++) {
+    const mx2 = (coords[i-1].x + coords[i].x) / 2;
+    ctx.bezierCurveTo(mx2, coords[i-1].y, mx2, coords[i].y, coords[i].x, coords[i].y);
+  }
+  ctx.lineTo(coords[coords.length-1].x, H);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  /* Stroke */
+  ctx.beginPath();
+  ctx.moveTo(coords[0].x, coords[0].y);
+  for (let i = 1; i < coords.length; i++) {
+    const mx2 = (coords[i-1].x + coords[i].x) / 2;
+    ctx.bezierCurveTo(mx2, coords[i-1].y, mx2, coords[i].y, coords[i].x, coords[i].y);
+  }
+  ctx.strokeStyle = lineColor;
+  ctx.lineWidth   = 2;
+  ctx.lineJoin    = 'round';
+  ctx.lineCap     = 'round';
+  ctx.stroke();
+
+  /* Dots */
+  coords.forEach(p => {
+    ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI*2);
+    ctx.fillStyle = '#fff'; ctx.fill();
+    ctx.beginPath(); ctx.arc(p.x, p.y, 2.5, 0, Math.PI*2);
+    ctx.fillStyle = lineColor; ctx.fill();
+  });
+}
+
+/* ── Auto Poll ─────────────────────────────────────── */
+function toggleAutoPoll(on) {
+  if (autoPollTimer) clearInterval(autoPollTimer);
+  if (on) autoPollTimer = setInterval(fetchStatus, 3000);
+}
+
+/* ── Init ──────────────────────────────────────────── */
+fetchStatus();
+toggleAutoPoll(true);
+</script>
+</body>
+</html>
