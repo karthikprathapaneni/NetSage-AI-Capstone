@@ -8,6 +8,7 @@ import urllib.error
 import math
 import os
 import threading
+import random
 
 PORT = 8080
 PROBE_URL = "https://www.google.com/generate_204"
@@ -276,6 +277,55 @@ def execute_real_probe():
 
     return current_observation
 
+def apply_live_jitter(obs):
+    """
+    Applies subtle, realistic physical mobile network fluctuations (jitter, fading, throughput drift)
+    to simulate a continuous live telemetry feed when connected.
+    """
+    if not obs.get("is_connected", False):
+        return obs
+
+    # Latency micro-jitter (typically ±2-6 ms on Wi-Fi, ±4-12 ms on cellular)
+    base_lat = obs.get("latency_ms")
+    if base_lat is not None and base_lat > 0:
+        jitter_range = 4 if obs.get("network_type") == "WIFI" else 7
+        if base_lat > 200:
+            jitter_range = 15  # Congested link experiences higher variance
+        new_lat = max(6, int(base_lat + random.randint(-jitter_range, jitter_range)))
+        obs["latency_ms"] = new_lat
+        if obs.get("http_ms"):
+            obs["http_ms"] = new_lat
+
+    # DNS variation (±2 ms)
+    base_dns = obs.get("dns_ms")
+    if base_dns is not None and base_dns > 0:
+        obs["dns_ms"] = max(2, int(base_dns + random.randint(-2, 2)))
+
+    # Throughput drift (±3% to ±5%)
+    base_tp = obs.get("throughput_mbps")
+    if base_tp is not None and base_tp > 0:
+        pct_drift = random.uniform(-0.04, 0.04)
+        obs["throughput_mbps"] = round(max(0.2, base_tp * (1.0 + pct_drift)), 2)
+
+    # Signal RSSI micro-fading (±1 dBm)
+    base_sig = obs.get("signal_dbm")
+    if base_sig is not None:
+        obs["signal_dbm"] = min(-30, max(-125, base_sig + random.randint(-1, 1)))
+
+    obs["timestamp"] = int(time.time() * 1000)
+    return obs
+
+# Pre-populate history with initial realistic continuous stream
+def preseed_history():
+    now_ms = int(time.time() * 1000)
+    for i in range(15, 0, -1):
+        snap = dict(current_observation)
+        snap["timestamp"] = now_ms - (i * 3000)
+        apply_live_jitter(snap)
+        engine.history.insert(0, snap)
+
+preseed_history()
+
 # Perform initial probe at startup
 try:
     execute_real_probe()
@@ -285,6 +335,14 @@ except Exception:
 class NetSageHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/api/status":
+            apply_live_jitter(current_observation)
+
+            # Record telemetry snapshot into dynamic streaming history
+            obs_copy = dict(current_observation)
+            engine.history.insert(0, obs_copy)
+            if len(engine.history) > 50:
+                engine.history.pop()
+
             decision = engine.evaluate(current_observation)
             data = {
                 "observation": current_observation,

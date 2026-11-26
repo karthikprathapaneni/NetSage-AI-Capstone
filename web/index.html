@@ -3,17 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NetSage AI · Mobile Network Intelligence & Adaptive Connectivity</title>
+<title>NetSage AI · Live Mobile Network Intelligence & Adaptive Connectivity</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <style>
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   DESIGN SYSTEM & CSS VARIABLES (LIGHT ENTERPRISE THEME)
+   DESIGN SYSTEM & CSS TOKENS (ENTERPRISE LIGHT THEME)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 :root {
-  /* Slate & Neutral Foundations */
   --bg-app:        #f8fafc;
   --surface:       #ffffff;
   --surface-subtle:#f1f5f9;
@@ -22,19 +21,16 @@
   --border-subtle: #edf2f7;
   --border-strong: #cbd5e1;
 
-  /* Typography */
   --text-main:     #0f172a;
   --text-body:     #334155;
   --text-muted:    #64748b;
   --text-subtle:   #94a3b8;
 
-  /* Primary Accent - Indigo / Royal Blue */
-  --primary:       #3b82f6;
+  --primary:       #2563eb;
   --primary-dark:  #1d4ed8;
   --primary-light: #eff6ff;
-  --primary-ring:  rgba(59, 130, 246, 0.2);
+  --primary-ring:  rgba(37, 99, 235, 0.2);
 
-  /* Status Tokens */
   --success:       #10b981;
   --success-dark:  #047857;
   --success-bg:    #ecfdf5;
@@ -55,22 +51,17 @@
   --purple-bg:     #f5f3ff;
   --purple-border: #ddd6fe;
 
-  /* Elevation Shadows */
   --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
   --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
   --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.07), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
 
-  /* Radii */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --radius-xl: 18px;
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   BASE RESET
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -87,7 +78,7 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   TOP NAVBAR
+   STICKY NAVBAR
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .navbar {
   position: sticky;
@@ -273,7 +264,7 @@ body {
   border-radius: 5px;
   background: var(--primary-light);
   color: var(--primary-dark);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(37, 99, 235, 0.2);
 }
 
 .col-footer-sub {
@@ -284,7 +275,72 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   PRIMARY 2-COLUMN OBSERVABILITY LAYOUT
+   QUICK SCENARIO SELECTOR BAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.quick-scenarios-bar {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+}
+
+.qs-title {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.qs-buttons-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.qs-pill-btn {
+  border: 1px solid var(--border-light);
+  background: var(--surface-subtle);
+  color: var(--text-body);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.qs-pill-btn:hover {
+  background: #ffffff;
+  border-color: var(--primary);
+  color: var(--primary-dark);
+  box-shadow: var(--shadow-xs);
+  transform: translateY(-1px);
+}
+
+.qs-pill-btn.active {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary-dark);
+  font-weight: 800;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PRIMARY 2-COLUMN OBSERVABILITY GRID
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .dashboard-grid {
   display: grid;
@@ -302,7 +358,7 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CARD COMPONENT
+   CARD STYLES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .pro-card {
   background: var(--surface);
@@ -429,7 +485,7 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   INTERACTIVE CHART WRAPPER
+   INTERACTIVE LIVE STREAMING CHART
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .chart-box {
   display: flex;
@@ -445,10 +501,37 @@ body {
   justify-content: space-between;
 }
 
+.chart-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .chart-title {
   font-size: 12.5px;
   font-weight: 700;
   color: var(--text-body);
+}
+
+.live-stream-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--success-dark);
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+  padding: 2px 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.live-stream-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+  animation: pulseDot 1.5s infinite;
 }
 
 .seg-control {
@@ -513,14 +596,32 @@ body {
 canvas#telemetryChart {
   display: block;
   width: 100%;
-  height: 160px;
+  height: 180px;
   border-radius: var(--radius-md);
   background: #f8fafc;
   border: 1px solid var(--border-subtle);
+  cursor: crosshair;
+}
+
+/* Floating Chart Hover Tooltip */
+.chart-tooltip {
+  position: absolute;
+  display: none;
+  background: rgba(15, 23, 42, 0.95);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: var(--shadow-md);
+  transform: translate(-50%, -120%);
+  white-space: nowrap;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   DECISION ENGINE & SCORE GAUGES
+   DECISION GAUGES & ACTION RECOMMENDATION
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .gauges-row {
   display: grid;
@@ -563,7 +664,7 @@ canvas#telemetryChart {
   stroke: var(--success);
   stroke-width: 6;
   stroke-linecap: round;
-  stroke-dasharray: 157; /* 2 * PI * 25 */
+  stroke-dasharray: 157;
   stroke-dashoffset: 23;
   transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s ease;
 }
@@ -595,9 +696,6 @@ canvas#telemetryChart {
   margin-top: 2px;
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ACTION BANNER
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .action-card {
   border-radius: var(--radius-md);
   border: 1px solid var(--primary-light);
@@ -614,7 +712,7 @@ canvas#telemetryChart {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+  border-bottom: 1px solid rgba(37, 99, 235, 0.1);
 }
 
 .action-key-pill {
@@ -625,7 +723,7 @@ canvas#telemetryChart {
   border-radius: 4px;
   background: #ffffff;
   color: var(--primary-dark);
-  border: 1px solid rgba(59, 130, 246, 0.25);
+  border: 1px solid rgba(37, 99, 235, 0.25);
 }
 
 .confidence-rate {
@@ -746,7 +844,7 @@ canvas#telemetryChart {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   RECENT OBSERVATIONS EVENT TABLE
+   EVENT TABLE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .table-card {
   background: var(--surface);
@@ -812,7 +910,7 @@ table.events-table tr:hover td {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CONTROL DECK / TOOLBAR
+   CONTROLS TOOLBAR
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .control-deck {
   background: var(--surface);
@@ -922,7 +1020,6 @@ button.btn-base {
   accent-color: var(--primary);
 }
 
-/* Spinner */
 .loading-spinner {
   display: none;
   width: 14px;
@@ -937,7 +1034,6 @@ button.btn-base {
   to { transform: rotate(360deg); }
 }
 
-/* Toast */
 .toast-bar {
   position: fixed;
   bottom: 24px;
@@ -964,9 +1060,6 @@ button.btn-base {
   transform: translateY(0);
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   FOOTER
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .footer-note {
   text-align: center;
   font-size: 11.5px;
@@ -1003,7 +1096,7 @@ button.btn-base {
   <div class="nav-right">
     <div class="live-indicator">
       <span>●</span>
-      <span id="live-indicator-text">Live 3s Polling</span>
+      <span id="live-indicator-text">Live Streaming (3s)</span>
     </div>
     <div class="clock-text" id="live-clock">--:--:--</div>
   </div>
@@ -1051,7 +1144,29 @@ button.btn-base {
         <span>Telemetry Provenance</span>
       </div>
       <div class="col-main-val" style="font-size:15px; font-family:'JetBrains Mono', monospace;" id="strip-timestamp">Just now</div>
-      <div class="col-footer-sub" id="strip-sampling-rate">3000 ms cadence · Monotonic RTT</div>
+      <div class="col-footer-sub" id="strip-sampling-rate">3000 ms streaming · Live micro-jitter</div>
+    </div>
+  </section>
+
+  <!-- ── ONE-CLICK PRESET CHIPS BAR ───────────────── -->
+  <section class="quick-scenarios-bar">
+    <span class="qs-title">⚡ Instant Scenario Presets:</span>
+    <div class="qs-buttons-group">
+      <button class="qs-pill-btn active" id="btn-sc-wifi" onclick="simulateScenario('wifi_normal', this)">
+        <span>🟢 Optimal Wi-Fi 5GHz</span>
+      </button>
+      <button class="qs-pill-btn" id="btn-sc-handoff" onclick="simulateScenario('wifi_handoff_trigger', this)">
+        <span>🟡 Weak Wi-Fi (Handoff)</span>
+      </button>
+      <button class="qs-pill-btn" id="btn-sc-5g" onclick="simulateScenario('cellular_5g', this)">
+        <span>⚡ 5G NR Standalone</span>
+      </button>
+      <button class="qs-pill-btn" id="btn-sc-lte" onclick="simulateScenario('cellular_metered_poor', this)">
+        <span>🟠 Poor LTE (Throttled)</span>
+      </button>
+      <button class="qs-pill-btn" id="btn-sc-off" onclick="simulateScenario('offline', this)">
+        <span>🔴 Offline Blackout</span>
+      </button>
     </div>
   </section>
 
@@ -1071,42 +1186,36 @@ button.btn-base {
       <div class="card-content">
         <!-- Telemetry 6-Grid -->
         <div class="metrics-grid">
-          <!-- Latency -->
           <div class="metric-cell">
             <span class="cell-caption">Round-Trip Time (RTT)</span>
             <div class="cell-data" id="val-latency">--<span class="cell-unit"> ms</span></div>
             <span class="cell-aux" id="val-dns">DNS: -- ms | HTTP: -- ms</span>
           </div>
 
-          <!-- Downlink Bandwidth -->
           <div class="metric-cell">
             <span class="cell-caption">Downlink Throughput</span>
             <div class="cell-data" id="val-throughput">--<span class="cell-unit"> Mbps</span></div>
             <span class="cell-aux" id="val-dl-est">Link Est: -- Mbps</span>
           </div>
 
-          <!-- RF Signal Quality -->
           <div class="metric-cell">
             <span class="cell-caption">RF Signal Strength</span>
             <div class="cell-data" id="val-signal">--<span class="cell-unit"> dBm</span></div>
             <span class="cell-aux" id="val-bars">-- Bars</span>
           </div>
 
-          <!-- Uplink Capacity -->
           <div class="metric-cell">
             <span class="cell-caption">Uplink Capacity</span>
             <div class="cell-data" id="val-uplink">--<span class="cell-unit"> Mbps</span></div>
             <span class="cell-aux" id="val-link-spd">Link Speed: -- Mbps</span>
           </div>
 
-          <!-- Billing & Metering -->
           <div class="metric-cell">
             <span class="cell-caption">Data Policy / Metering</span>
             <div class="cell-data" style="font-size:18px;" id="val-metered">Unmetered</div>
             <span class="cell-aux">Background Traffic Unrestricted</span>
           </div>
 
-          <!-- Channel & Spectrum -->
           <div class="metric-cell">
             <span class="cell-caption">RF Spectrum Band</span>
             <div class="cell-data" style="font-size:18px;" id="val-freq">5 GHz</div>
@@ -1117,7 +1226,13 @@ button.btn-base {
         <!-- Telemetry Trendline Chart Section -->
         <div class="chart-box">
           <div class="chart-header-row">
-            <span class="chart-title">Continuous Observation Trend</span>
+            <div class="chart-title-wrap">
+              <span class="chart-title">Continuous Observation Trend</span>
+              <span class="live-stream-badge">
+                <span class="live-stream-dot"></span>
+                <span id="chart-stream-status">Dynamic Stream</span>
+              </span>
+            </div>
             <div class="seg-control">
               <button class="seg-btn active" onclick="switchMetric('latency', event)">Latency</button>
               <button class="seg-btn" onclick="switchMetric('signal', event)">Signal</button>
@@ -1127,21 +1242,22 @@ button.btn-base {
 
           <div class="stat-strip-compact">
             <div>
-              <div class="sc-item-label">Minimum</div>
+              <div class="sc-item-label">Window Min</div>
               <div class="sc-item-val" id="chart-min">--</div>
             </div>
             <div>
-              <div class="sc-item-label">Window Average</div>
+              <div class="sc-item-label">Window Avg</div>
               <div class="sc-item-val" id="chart-avg" style="color:var(--primary-dark);">--</div>
             </div>
             <div>
-              <div class="sc-item-label">Maximum</div>
+              <div class="sc-item-label">Window Max</div>
               <div class="sc-item-val" id="chart-max">--</div>
             </div>
           </div>
 
           <div class="canvas-container">
             <canvas id="telemetryChart"></canvas>
+            <div class="chart-tooltip" id="chart-tooltip"></div>
           </div>
         </div>
       </div>
@@ -1245,7 +1361,7 @@ button.btn-base {
       <h3>
         <span>📋 Telemetry Observation Stream</span>
       </h3>
-      <span style="font-size:11.5px; color:var(--text-muted);" id="table-count">Displaying last 15 snapshots</span>
+      <span style="font-size:11.5px; color:var(--text-muted);" id="table-count">Displaying streaming snapshots</span>
     </div>
     <div class="table-scroll">
       <table class="events-table">
@@ -1286,7 +1402,7 @@ button.btn-base {
     </div>
 
     <div class="button-row" style="flex-wrap:wrap;">
-      <label for="scenario-select" style="font-size:12px; font-weight:700; color:var(--text-body);">Simulate Scenario:</label>
+      <label for="scenario-select" style="font-size:12px; font-weight:700; color:var(--text-body);">Scenario Dropdown:</label>
       <select id="scenario-select" class="scenario-select" onchange="simulateScenario(this.value)">
         <option value="wifi_normal">🟢 Optimal Wi-Fi 5 GHz</option>
         <option value="wifi_handoff_trigger">🟡 Weak Wi-Fi — Trigger Handoff</option>
@@ -1297,15 +1413,15 @@ button.btn-base {
 
       <label class="poll-toggle">
         <input type="checkbox" id="auto-poll-chk" checked onchange="toggleAutoPoll(this.checked)">
-        <span>Auto-Sync (3s)</span>
+        <span>Auto-Sync Stream (3s)</span>
       </label>
     </div>
   </section>
 
   <!-- ── FOOTER ───────────────────────────────────── -->
   <footer class="footer-note">
-    <strong>NetSage AI</strong> · An Intelligent Mobile Network Quality Prediction and Adaptive Connectivity Decision Support System<br />
-    B.E. CSE-AI · Mobile Computing Capstone · Real-Time Telemetry &amp; Pure-Kotlin / Python ML Decision Pipeline
+    <strong>NetSage AI</strong> · Intelligent Mobile Network Quality Prediction &amp; Adaptive Connectivity Decision Support System<br />
+    B.E. CSE-AI · Mobile Computing Capstone · Real-Time Dynamic Telemetry Stream &amp; Random Forest ML Pipeline
   </footer>
 
 </main>
@@ -1324,6 +1440,8 @@ let currentMetric = 'latency';
 let historyPoints = [];
 let autoPollTimer = null;
 let currentFeatureVector = null;
+let chartCoords = []; // cached coordinates for tooltip hit testing
+let chartHoverIdx = null;
 
 /* ── Live Monotonic Clock ───────────────────────────── */
 (function initClock() {
@@ -1378,7 +1496,14 @@ async function runActiveProbe() {
   }
 }
 
-async function simulateScenario(scenarioName) {
+async function simulateScenario(scenarioName, elementBtn) {
+  if (elementBtn) {
+    document.querySelectorAll('.qs-pill-btn').forEach(btn => btn.classList.remove('active'));
+    elementBtn.classList.add('active');
+  }
+  const selectEl = document.getElementById('scenario-select');
+  if (selectEl) selectEl.value = scenarioName;
+
   try {
     const res = await fetch('/api/simulate', {
       method: 'POST',
@@ -1388,7 +1513,7 @@ async function simulateScenario(scenarioName) {
     if (!res.ok) throw new Error(`Simulation failed: ${res.status}`);
     const data = await res.json();
     renderDashboard(data);
-    showToast(`Scenario simulated: ${scenarioName.replace(/_/g, ' ')}`);
+    showToast(`Scenario active: ${scenarioName.replace(/_/g, ' ')}`);
   } catch (err) {
     console.error('Simulation error:', err);
   }
@@ -1556,13 +1681,9 @@ function updateQosMatrix(lat, tp, score) {
     }
   }
 
-  // VoIP: requires latency < 150ms and score > 40
   setBadge(voip, lat !== null && lat < 80 && score >= 50, lat !== null && lat < 200 && score >= 35);
-  // 4K Stream: requires throughput > 15Mbps or score >= 60
   setBadge(stream, tp !== null && tp >= 15 && score >= 55, tp !== null && tp >= 5 && score >= 35);
-  // Cloud Gaming: requires latency < 45ms and score >= 70
   setBadge(game, lat !== null && lat < 45 && score >= 70, lat !== null && lat < 90 && score >= 50);
-  // Bulk Transfer: depends on throughput
   setBadge(bulk, tp !== null && tp >= 25, tp !== null && tp >= 5);
 }
 
@@ -1575,7 +1696,7 @@ function renderTelemetryTable(history) {
   }
 
   const items = history.slice(0, 15);
-  tbody.innerHTML = items.map(item => {
+  tbody.innerHTML = items.map((item, idx) => {
     const timeStr = new Date(item.timestamp || Date.now()).toLocaleTimeString('en-IN', { hour12: false });
     const latStr = item.latency_ms !== null && item.latency_ms !== undefined ? `${item.latency_ms} ms` : '—';
     const tpStr = item.throughput_mbps !== null && item.throughput_mbps !== undefined ? `${item.throughput_mbps.toFixed(2)} Mbps` : '—';
@@ -1584,21 +1705,21 @@ function renderTelemetryTable(history) {
     const ifaceStr = item.interface_name || 'wlan0';
 
     return `
-      <tr>
+      <tr style="${idx === 0 ? 'background:rgba(37,99,235,0.03);' : ''}">
         <td>${timeStr}</td>
         <td><strong>${netStr}</strong></td>
         <td>${ifaceStr}</td>
-        <td>${latStr}</td>
+        <td><span style="font-weight:700;">${latStr}</span></td>
         <td>${tpStr}</td>
         <td>${sigStr}</td>
         <td><span style="font-weight:700; color:${item.latency_ms < 100 ? 'var(--success-dark)' : 'var(--warning-dark)'};">${item.latency_ms ? (item.latency_ms < 100 ? 'Good' : 'Fair') : 'Eval'}</span></td>
-        <td style="color:var(--primary-dark); font-weight:600;">STREAM_SYNC</td>
+        <td style="color:var(--primary-dark); font-weight:600;">${idx === 0 ? '● STREAM_LIVE' : 'STREAM_SYNC'}</td>
       </tr>
     `;
   }).join('');
 }
 
-/* ── Canvas Smooth Bezier Trend Chart ───────────────── */
+/* ── Canvas Smooth Bezier Trend Chart with Tooltip & Live Pulse ── */
 function switchMetric(metricName, evt) {
   currentMetric = metricName;
   document.querySelectorAll('.seg-btn').forEach(btn => btn.classList.remove('active'));
@@ -1613,7 +1734,7 @@ function drawChart() {
   const dpr = window.devicePixelRatio || 1;
   const rect = canvas.getBoundingClientRect();
   const W = rect.width;
-  const H = 160;
+  const H = 180;
 
   canvas.width = W * dpr;
   canvas.height = H * dpr;
@@ -1636,8 +1757,8 @@ function drawChart() {
     return;
   }
 
-  const minV = Math.min(...vals);
-  const maxV = Math.max(...vals);
+  let minV = Math.min(...vals);
+  let maxV = Math.max(...vals);
   const avgV = vals.reduce((sum, v) => sum + v, 0) / vals.length;
   const unit = currentMetric === 'latency' ? 'ms' : (currentMetric === 'signal' ? 'dBm' : 'Mbps');
 
@@ -1645,50 +1766,70 @@ function drawChart() {
   document.getElementById('chart-avg').textContent = `${avgV.toFixed(1)} ${unit}`;
   document.getElementById('chart-max').textContent = `${maxV.toFixed(1)} ${unit}`;
 
+  // Give 10% breathing room to ensure visible curves even on micro-fluctuations
+  const span = maxV - minV;
+  const minSpan = currentMetric === 'latency' ? 12 : (currentMetric === 'signal' ? 6 : 4);
+  const effectiveSpan = Math.max(span, minSpan);
+  const displayMin = minV - effectiveSpan * 0.12;
+  const displayMax = maxV + effectiveSpan * 0.12;
+  const range = displayMax - displayMin;
+
   const lineColor = currentMetric === 'latency' ? '#2563eb' : (currentMetric === 'signal' ? '#059669' : '#7c3aed');
 
-  // Subtle grid lines
+  // Background horizontal grid lines with Y values
   ctx.strokeStyle = '#e2e8f0';
   ctx.lineWidth = 1;
+  ctx.font = '500 9.5px "JetBrains Mono", monospace';
+  ctx.fillStyle = '#94a3b8';
+  ctx.textAlign = 'left';
+
   for (let i = 1; i <= 3; i++) {
     const y = (H / 4) * i;
     ctx.beginPath();
-    ctx.moveTo(0, y);
-    ctx.lineTo(W, y);
+    ctx.moveTo(35, y);
+    ctx.lineTo(W - 16, y);
     ctx.stroke();
+
+    const valAtY = displayMax - (i / 4.0) * range;
+    ctx.fillText(`${valAtY.toFixed(0)} ${unit}`, 6, y + 3);
   }
 
-  const PAD = 16;
-  const range = maxV === minV ? 1 : maxV - minV;
-  const stepX = (W - PAD * 2) / (vals.length - 1);
-  const coords = vals.map((v, i) => ({
-    x: PAD + i * stepX,
-    y: H - 18 - ((v - minV) / range) * (H - 42)
+  const PAD_LEFT = 42;
+  const PAD_RIGHT = 32;
+  const BOTTOM_SPACE = 26;
+  const usableH = H - BOTTOM_SPACE - 20;
+  const stepX = (W - PAD_LEFT - PAD_RIGHT) / (vals.length - 1);
+
+  chartCoords = vals.map((v, i) => ({
+    x: PAD_LEFT + i * stepX,
+    y: 18 + usableH - ((v - displayMin) / range) * usableH,
+    val: v,
+    time: pts[i] ? new Date(pts[i].timestamp || Date.now()).toLocaleTimeString('en-IN', { hour12: false }) : ''
   }));
 
   // Smooth Area Gradient Fill
-  const gradient = ctx.createLinearGradient(0, 0, 0, H);
+  const gradient = ctx.createLinearGradient(0, 0, 0, H - BOTTOM_SPACE);
   gradient.addColorStop(0, lineColor + '33');
   gradient.addColorStop(1, lineColor + '00');
 
   ctx.beginPath();
-  ctx.moveTo(coords[0].x, H);
-  ctx.lineTo(coords[0].x, coords[0].y);
-  for (let i = 1; i < coords.length; i++) {
-    const midX = (coords[i - 1].x + coords[i].x) / 2;
-    ctx.bezierCurveTo(midX, coords[i - 1].y, midX, coords[i].y, coords[i].x, coords[i].y);
+  ctx.moveTo(chartCoords[0].x, H - BOTTOM_SPACE);
+  ctx.lineTo(chartCoords[0].x, chartCoords[0].y);
+  for (let i = 1; i < chartCoords.length; i++) {
+    const midX = (chartCoords[i - 1].x + chartCoords[i].x) / 2;
+    ctx.bezierCurveTo(midX, chartCoords[i - 1].y, midX, chartCoords[i].y, chartCoords[i].x, chartCoords[i].y);
   }
-  ctx.lineTo(coords[coords.length - 1].x, H);
+  ctx.lineTo(chartCoords[chartCoords.length - 1].x, H - BOTTOM_SPACE);
   ctx.closePath();
   ctx.fillStyle = gradient;
   ctx.fill();
 
   // Smooth Bezier Line Stroke
   ctx.beginPath();
-  ctx.moveTo(coords[0].x, coords[0].y);
-  for (let i = 1; i < coords.length; i++) {
-    const midX = (coords[i - 1].x + coords[i].x) / 2;
-    ctx.bezierCurveTo(midX, coords[i - 1].y, midX, coords[i].y, coords[i].x, coords[i].y);
+  ctx.moveTo(chartCoords[0].x, chartCoords[0].y);
+  for (let i = 1; i < chartCoords.length; i++) {
+    const midX = (chartCoords[i - 1].x + chartCoords[i].x) / 2;
+    ctx.bezierCurveTo(midX, chartCoords[i - 1].y, midX, chartCoords[i].y, chartCoords[i].x, chartCoords[i].y);
   }
   ctx.strokeStyle = lineColor;
   ctx.lineWidth = 2.5;
@@ -1696,18 +1837,119 @@ function drawChart() {
   ctx.lineJoin = 'round';
   ctx.stroke();
 
-  // Highlight points
-  coords.forEach(p => {
+  // Draw points along the line
+  chartCoords.forEach((p, idx) => {
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, 3.5, 0, Math.PI * 2);
     ctx.fillStyle = '#ffffff';
     ctx.fill();
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
     ctx.fillStyle = lineColor;
     ctx.fill();
   });
+
+  // Animated pulse radar on the live head (last point)
+  const lastP = chartCoords[chartCoords.length - 1];
+  if (lastP) {
+    // Pulse ring
+    ctx.beginPath();
+    ctx.arc(lastP.x, lastP.y, 9, 0, Math.PI * 2);
+    ctx.strokeStyle = lineColor + '66';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Solid inner core
+    ctx.beginPath();
+    ctx.arc(lastP.x, lastP.y, 4.5, 0, Math.PI * 2);
+    ctx.fillStyle = lineColor;
+    ctx.fill();
+
+    // Floating Current Value Badge directly on head
+    const textVal = `${lastP.val.toFixed(1)} ${unit}`;
+    ctx.font = '700 11px "JetBrains Mono", monospace';
+    ctx.textAlign = 'right';
+    ctx.fillStyle = lineColor;
+    ctx.fillText(textVal, W - 14, Math.max(16, lastP.y - 10));
+  }
+
+  // Draw X-Axis relative time labels
+  ctx.font = '600 10px "Plus Jakarta Sans", sans-serif';
+  ctx.fillStyle = '#94a3b8';
+  ctx.textAlign = 'center';
+  const timeLabels = ['-45s', '-30s', '-15s', 'Now'];
+  for (let t = 0; t < 4; t++) {
+    const tx = PAD_LEFT + (t / 3.0) * (W - PAD_LEFT - PAD_RIGHT);
+    ctx.fillText(timeLabels[t], tx, H - 8);
+  }
+
+  // Draw crosshair hover guide if active
+  if (chartHoverIdx !== null && chartCoords[chartHoverIdx]) {
+    const hp = chartCoords[chartHoverIdx];
+    ctx.beginPath();
+    ctx.setLineDash([3, 3]);
+    ctx.strokeStyle = '#94a3b8';
+    ctx.lineWidth = 1;
+    ctx.moveTo(hp.x, 14);
+    ctx.lineTo(hp.x, H - BOTTOM_SPACE);
+    ctx.stroke();
+    ctx.setLineDash([]); // reset
+
+    ctx.beginPath();
+    ctx.arc(hp.x, hp.y, 6, 0, Math.PI * 2);
+    ctx.fillStyle = lineColor;
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(hp.x, hp.y, 3, 0, Math.PI * 2);
+    ctx.fillStyle = '#ffffff';
+    ctx.fill();
+  }
 }
+
+/* ── Canvas Hover Listener ──────────────────────────── */
+(function setupChartInteractivity() {
+  const canvas = document.getElementById('telemetryChart');
+  const tooltip = document.getElementById('chart-tooltip');
+  if (!canvas || !tooltip) return;
+
+  canvas.addEventListener('mousemove', (e) => {
+    if (!chartCoords || chartCoords.length === 0) return;
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+
+    // Find closest point by x
+    let closestIdx = 0;
+    let closestDist = Math.abs(chartCoords[0].x - mouseX);
+    for (let i = 1; i < chartCoords.length; i++) {
+      const d = Math.abs(chartCoords[i].x - mouseX);
+      if (d < closestDist) {
+        closestDist = d;
+        closestIdx = i;
+      }
+    }
+
+    if (closestDist < 35) {
+      chartHoverIdx = closestIdx;
+      const target = chartCoords[closestIdx];
+      const unit = currentMetric === 'latency' ? 'ms' : (currentMetric === 'signal' ? 'dBm' : 'Mbps');
+      tooltip.style.display = 'block';
+      tooltip.style.left = `${target.x}px`;
+      tooltip.style.top = `${target.y}px`;
+      tooltip.innerHTML = `<strong>${target.val.toFixed(1)} ${unit}</strong> <span style="opacity:0.75; font-size:10px;">@ ${target.time}</span>`;
+      drawChart();
+    } else {
+      chartHoverIdx = null;
+      tooltip.style.display = 'none';
+      drawChart();
+    }
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    chartHoverIdx = null;
+    tooltip.style.display = 'none';
+    drawChart();
+  });
+})();
 
 /* ── Polling Scheduler ──────────────────────────────── */
 function toggleAutoPoll(enabled) {
@@ -1715,9 +1957,9 @@ function toggleAutoPoll(enabled) {
   const badge = document.getElementById('live-indicator-text');
   if (enabled) {
     autoPollTimer = setInterval(fetchStatus, 3000);
-    badge.textContent = 'Live 3s Polling';
+    badge.textContent = 'Live Streaming (3s)';
   } else {
-    badge.textContent = 'Polling Paused';
+    badge.textContent = 'Stream Paused';
   }
 }
 
