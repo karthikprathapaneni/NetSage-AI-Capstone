@@ -3,58 +3,59 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NetSage AI · Live Mobile Network Intelligence & Adaptive Connectivity</title>
+<title>NetSage AI · Mobile Network Intelligence &amp; Adaptive Connectivity Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <style>
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   DESIGN SYSTEM & CSS TOKENS (ENTERPRISE LIGHT THEME)
+   DESIGN SYSTEM & THEME TOKENS (ENTERPRISE SAAS LIGHT)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 :root {
-  --bg-app:        #f8fafc;
-  --surface:       #ffffff;
-  --surface-subtle:#f1f5f9;
-  --surface-hover: #f8fafc;
-  --border-light:  #e2e8f0;
-  --border-subtle: #edf2f7;
-  --border-strong: #cbd5e1;
+  --bg-app:          #f8fafc;
+  --surface:         #ffffff;
+  --surface-subtle:  #f1f5f9;
+  --surface-hover:   #f8fafc;
+  --border-light:    #e2e8f0;
+  --border-subtle:   #edf2f7;
+  --border-strong:   #cbd5e1;
 
-  --text-main:     #0f172a;
-  --text-body:     #334155;
-  --text-muted:    #64748b;
-  --text-subtle:   #94a3b8;
+  --text-main:       #0f172a;
+  --text-body:       #334155;
+  --text-muted:      #64748b;
+  --text-subtle:     #94a3b8;
 
-  --primary:       #2563eb;
-  --primary-dark:  #1d4ed8;
-  --primary-light: #eff6ff;
-  --primary-ring:  rgba(37, 99, 235, 0.2);
+  --primary:         #2563eb;
+  --primary-dark:    #1d4ed8;
+  --primary-light:   #eff6ff;
+  --primary-border:  #bfdbfe;
 
-  --success:       #10b981;
-  --success-dark:  #047857;
-  --success-bg:    #ecfdf5;
-  --success-border:#a7f3d0;
+  --success:         #10b981;
+  --success-dark:    #047857;
+  --success-bg:      #ecfdf5;
+  --success-border:  #a7f3d0;
 
-  --warning:       #f59e0b;
-  --warning-dark:  #b45309;
-  --warning-bg:    #fffbeb;
-  --warning-border:#fde68a;
+  --warning:         #f59e0b;
+  --warning-dark:    #b45309;
+  --warning-bg:      #fffbeb;
+  --warning-border:  #fde68a;
 
-  --danger:        #ef4444;
-  --danger-dark:   #b91c1c;
-  --danger-bg:     #fef2f2;
-  --danger-border: #fecaca;
+  --danger:          #ef4444;
+  --danger-dark:     #b91c1c;
+  --danger-bg:       #fef2f2;
+  --danger-border:   #fecaca;
 
-  --purple:        #8b5cf6;
-  --purple-dark:   #6d28d9;
-  --purple-bg:     #f5f3ff;
-  --purple-border: #ddd6fe;
+  --purple:          #8b5cf6;
+  --purple-dark:     #6d28d9;
+  --purple-bg:       #f5f3ff;
+  --purple-border:   #ddd6fe;
 
   --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
   --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
   --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
   --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.10), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -78,13 +79,13 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   STICKY NAVBAR
+   HEADER & NAVIGATION
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 100;
-  height: 64px;
+  height: 68px;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -92,230 +93,248 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 28px;
+  padding: 0 32px;
 }
 
-.nav-left {
+.nav-brand {
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
-.brand-badge {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+.brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
   background: linear-gradient(135deg, #2563eb, #7c3aed);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ffffff;
   font-weight: 800;
-  font-size: 15px;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
   letter-spacing: -0.5px;
 }
 
-.brand-meta h1 {
-  font-size: 16px;
+.brand-text h1 {
+  font-size: 17px;
   font-weight: 800;
   color: var(--text-main);
   letter-spacing: -0.3px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
-.brand-meta h1 span {
+.brand-text h1 span {
   color: var(--primary);
 }
 
-.brand-meta p {
-  font-size: 11px;
+.capstone-badge {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border: 1px solid var(--primary-border);
+}
+
+.brand-text p {
+  font-size: 11.5px;
   color: var(--text-muted);
   font-weight: 500;
 }
 
-.nav-center-pill {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  background: var(--surface-subtle);
-  border: 1px solid var(--border-light);
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 12px;
-}
-
-.ping-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 600;
-  color: var(--text-body);
-}
-
-.ping-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--success);
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
-  animation: pulseDot 2s infinite;
-}
-
-@keyframes pulseDot {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  50% { transform: scale(1.15); opacity: 1; }
-  100% { transform: scale(0.95); opacity: 0.8; }
-}
-
-.nav-right {
+.nav-actions {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.live-indicator {
+.live-pill {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 11.5px;
-  font-weight: 600;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 700;
   background: var(--success-bg);
   color: var(--success-dark);
   border: 1px solid var(--success-border);
-  padding: 4px 10px;
-  border-radius: 20px;
+  padding: 5px 12px;
+  border-radius: 999px;
 }
 
-.clock-text {
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+  animation: pulseDot 1.8s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+.clock-display {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--text-muted);
-  font-weight: 500;
-  min-width: 65px;
-  text-align: right;
+  font-size: 12.5px;
+  color: var(--text-body);
+  font-weight: 600;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border-light);
+  padding: 5px 12px;
+  border-radius: 8px;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   APP CONTAINER
+   PAGE CONTAINER
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.app-container {
-  max-width: 1280px;
+.page-container {
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 24px 24px 64px;
+  padding: 26px 28px 72px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   TOP OVERVIEW STRIP
+   TOP 4-KPI RIBBON
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.overview-grid {
+.kpi-ribbon {
   display: grid;
-  grid-template-columns: 1.8fr 1.2fr 1fr 1fr;
+  grid-template-columns: 1.4fr 1.1fr 1.1fr 1.2fr;
+  gap: 14px;
+}
+
+.kpi-card {
   background: var(--surface);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-xl);
+  padding: 18px 22px;
   box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
   overflow: hidden;
 }
 
-.overview-col {
-  padding: 20px 24px;
-  border-right: 1px solid var(--border-subtle);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
 }
 
-.overview-col:last-child {
-  border-right: none;
-}
-
-.col-header {
+.kpi-header {
   font-size: 11px;
   font-weight: 700;
-  color: var(--text-subtle);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.6px;
-  margin-bottom: 6px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: space-between;
 }
 
-.col-main-val {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--text-main);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  letter-spacing: -0.3px;
-}
-
-.network-badge {
+.kpi-badge {
   font-size: 10px;
   font-weight: 800;
   padding: 2px 7px;
-  border-radius: 5px;
-  background: var(--primary-light);
-  color: var(--primary-dark);
-  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
 }
 
-.col-footer-sub {
+.kpi-badge-blue { background: var(--primary-light); color: var(--primary-dark); }
+.kpi-badge-green { background: var(--success-bg); color: var(--success-dark); }
+.kpi-badge-amber { background: var(--warning-bg); color: var(--warning-dark); }
+.kpi-badge-purple { background: var(--purple-bg); color: var(--purple-dark); }
+
+.kpi-value-row {
+  margin: 10px 0 6px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.kpi-num {
+  font-size: 28px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-main);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.kpi-unit {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.kpi-footer {
   font-size: 12px;
   color: var(--text-muted);
-  margin-top: 4px;
   font-weight: 500;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   QUICK SCENARIO SELECTOR BAR
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.quick-scenarios-bar {
-  background: var(--surface);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 12px 18px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: var(--shadow-sm);
-  flex-wrap: wrap;
-}
-
-.qs-title {
-  font-size: 11.5px;
-  font-weight: 800;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
   display: flex;
   align-items: center;
   gap: 6px;
-  white-space: nowrap;
 }
 
-.qs-buttons-group {
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   INTERACTIVE LIVE SCENARIO PRESETS BAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.scenario-bar {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 14px 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.scenario-label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scenario-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.scenario-pills {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.qs-pill-btn {
+.scenario-btn {
   border: 1px solid var(--border-light);
   background: var(--surface-subtle);
   color: var(--text-body);
   font-family: inherit;
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 700;
-  padding: 6px 12px;
+  padding: 7px 14px;
   border-radius: 999px;
   cursor: pointer;
   display: inline-flex;
@@ -324,7 +343,7 @@ body {
   transition: all 0.15s ease;
 }
 
-.qs-pill-btn:hover {
+.scenario-btn:hover {
   background: #ffffff;
   border-color: var(--primary);
   color: var(--primary-dark);
@@ -332,35 +351,52 @@ body {
   transform: translateY(-1px);
 }
 
-.qs-pill-btn.active {
+.scenario-btn.active {
   background: var(--primary-light);
   border-color: var(--primary);
   color: var(--primary-dark);
   font-weight: 800;
 }
 
+.sync-toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-body);
+  cursor: pointer;
+  user-select: none;
+}
+
+.sync-toggle-wrap input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+}
+
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   PRIMARY 2-COLUMN OBSERVABILITY GRID
+   MAIN DASHBOARD GRID (2-COLUMN OBSERVABILITY)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.dashboard-grid {
+.main-grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: 20px;
 }
 
-@media (max-width: 980px) {
-  .overview-grid { grid-template-columns: 1fr 1fr; }
-  .dashboard-grid { grid-template-columns: 1fr; }
+@media (max-width: 1040px) {
+  .kpi-ribbon { grid-template-columns: 1fr 1fr; }
+  .main-grid { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 600px) {
-  .overview-grid { grid-template-columns: 1fr; }
+@media (max-width: 640px) {
+  .kpi-ribbon { grid-template-columns: 1fr; }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CARD STYLES
+   CARD WRAPPER
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.pro-card {
+.card {
   background: var(--surface);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-xl);
@@ -374,64 +410,55 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
+  padding: 18px 22px;
   border-bottom: 1px solid var(--border-subtle);
   background: #ffffff;
 }
 
-.card-title-group {
+.card-top-left {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.card-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+.card-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 15px;
+  font-size: 16px;
 }
 
-.avatar-blue { background: var(--primary-light); color: var(--primary); }
-.avatar-purple { background: var(--purple-bg); color: var(--purple-dark); }
+.icon-blue { background: var(--primary-light); color: var(--primary); }
+.icon-purple { background: var(--purple-bg); color: var(--purple-dark); }
+.icon-emerald { background: var(--success-bg); color: var(--success-dark); }
 
-.card-heading {
-  font-size: 14.5px;
-  font-weight: 700;
+.card-title {
+  font-size: 15px;
+  font-weight: 800;
   color: var(--text-main);
   letter-spacing: -0.2px;
 }
 
-.card-meta-pill {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 9px;
-  border-radius: 999px;
-}
-
-.pill-blue { background: var(--primary-light); color: var(--primary-dark); }
-.pill-purple { background: var(--purple-bg); color: var(--purple-dark); }
-
-.card-content {
-  padding: 20px;
+.card-body {
+  padding: 22px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   TELEMETRY METRICS 6-GRID
+   TELEMETRY 6-TILES GRID
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.metrics-grid {
+.telemetry-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
 
-.metric-cell {
+.tile {
   background: var(--surface-subtle);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
@@ -439,18 +466,17 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all 0.2s ease;
-  position: relative;
+  transition: all 0.15s ease;
 }
 
-.metric-cell:hover {
+.tile:hover {
   background: #ffffff;
   border-color: var(--border-strong);
   box-shadow: var(--shadow-sm);
   transform: translateY(-1px);
 }
 
-.cell-caption {
+.tile-caption {
   font-size: 10.5px;
   font-weight: 700;
   color: var(--text-muted);
@@ -458,83 +484,74 @@ body {
   letter-spacing: 0.5px;
 }
 
-.cell-data {
-  font-size: 24px;
+.tile-value {
+  font-size: 22px;
   font-weight: 800;
   font-family: 'JetBrains Mono', monospace;
   color: var(--text-main);
   letter-spacing: -0.5px;
-  line-height: 1.1;
   margin: 6px 0 4px;
   display: flex;
   align-items: baseline;
   gap: 4px;
 }
 
-.cell-unit {
-  font-size: 11px;
+.tile-unit {
+  font-size: 11.5px;
   font-weight: 600;
   color: var(--text-subtle);
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-.cell-aux {
+.tile-sub {
   font-size: 11.5px;
   color: var(--text-muted);
   font-weight: 500;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   INTERACTIVE LIVE STREAMING CHART
+   LIVE CHART (CANVAS + METRIC TOGGLES + HOVER TOOLTIP)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.chart-box {
+.chart-section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   border-top: 1px solid var(--border-subtle);
-  padding-top: 16px;
+  padding-top: 18px;
 }
 
-.chart-header-row {
+.chart-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.chart-title-wrap {
+.chart-title-group {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.chart-title {
-  font-size: 12.5px;
+.chart-heading {
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-body);
 }
 
-.live-stream-badge {
+.chart-live-badge {
   font-size: 10px;
   font-weight: 700;
   color: var(--success-dark);
   background: var(--success-bg);
   border: 1px solid var(--success-border);
   padding: 2px 8px;
-  border-radius: 12px;
+  border-radius: 999px;
   display: inline-flex;
   align-items: center;
   gap: 4px;
 }
 
-.live-stream-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--success);
-  animation: pulseDot 1.5s infinite;
-}
-
-.seg-control {
+.chart-controls {
   display: flex;
   background: var(--surface-subtle);
   border: 1px solid var(--border-light);
@@ -543,7 +560,7 @@ body {
   gap: 2px;
 }
 
-.seg-btn {
+.chart-tab-btn {
   border: none;
   background: transparent;
   padding: 4px 10px;
@@ -556,39 +573,39 @@ body {
   font-family: inherit;
 }
 
-.seg-btn.active {
+.chart-tab-btn.active {
   background: #ffffff;
   color: var(--primary-dark);
-  font-weight: 700;
+  font-weight: 800;
   box-shadow: var(--shadow-xs);
 }
 
-.stat-strip-compact {
+.chart-stats-strip {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   background: var(--surface-subtle);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   text-align: center;
-  padding: 6px;
+  padding: 8px;
 }
 
-.sc-item-label {
+.cs-label {
   font-size: 9.5px;
   font-weight: 700;
   color: var(--text-subtle);
   text-transform: uppercase;
 }
 
-.sc-item-val {
-  font-size: 13px;
-  font-weight: 700;
+.cs-val {
+  font-size: 13.5px;
+  font-weight: 800;
   font-family: 'JetBrains Mono', monospace;
   color: var(--text-main);
   margin-top: 1px;
 }
 
-.canvas-container {
+.canvas-wrap {
   position: relative;
   width: 100%;
 }
@@ -596,14 +613,13 @@ body {
 canvas#telemetryChart {
   display: block;
   width: 100%;
-  height: 180px;
+  height: 200px;
   border-radius: var(--radius-md);
   background: #f8fafc;
   border: 1px solid var(--border-subtle);
   cursor: crosshair;
 }
 
-/* Floating Chart Hover Tooltip */
 .chart-tooltip {
   position: absolute;
   display: none;
@@ -615,21 +631,21 @@ canvas#telemetryChart {
   font-family: 'JetBrains Mono', monospace;
   pointer-events: none;
   z-index: 10;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
   transform: translate(-50%, -120%);
   white-space: nowrap;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   DECISION GAUGES & ACTION RECOMMENDATION
+   DECISION ENGINE & QUALITY GAUGES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.gauges-row {
+.gauges-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
 
-.gauge-panel {
+.gauge-box {
   background: var(--surface-subtle);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
@@ -639,66 +655,69 @@ canvas#telemetryChart {
   gap: 14px;
 }
 
-.ring-visual {
-  width: 62px;
-  height: 62px;
+.gauge-svg-wrap {
+  width: 64px;
+  height: 64px;
   position: relative;
   flex-shrink: 0;
 }
 
-.ring-visual svg {
+.gauge-svg-wrap svg {
   width: 100%;
   height: 100%;
   transform: rotate(-90deg);
 }
 
-.ring-track {
+.gauge-track {
   fill: none;
   stroke: var(--border-strong);
-  stroke-width: 6;
-  opacity: 0.3;
+  stroke-width: 6.5;
+  opacity: 0.35;
 }
 
-.ring-progress {
+.gauge-fill {
   fill: none;
   stroke: var(--success);
-  stroke-width: 6;
+  stroke-width: 6.5;
   stroke-linecap: round;
   stroke-dasharray: 157;
   stroke-dashoffset: 23;
   transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s ease;
 }
 
-.ring-center-number {
+.gauge-center-text {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 800;
   color: var(--text-main);
 }
 
-.gauge-details h4 {
-  font-size: 11px;
+.gauge-meta h4 {
+  font-size: 10.5px;
   font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.gauge-details p {
-  font-size: 13.5px;
+.gauge-meta p {
+  font-size: 14px;
   font-weight: 800;
   color: var(--success-dark);
   margin-top: 2px;
 }
 
-.action-card {
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ACTION CARD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.action-box {
   border-radius: var(--radius-md);
-  border: 1px solid var(--primary-light);
+  border: 1px solid var(--primary-border);
   background: #ffffff;
   box-shadow: var(--shadow-sm);
   overflow: hidden;
@@ -706,7 +725,7 @@ canvas#telemetryChart {
   transition: all 0.2s ease;
 }
 
-.action-card-header {
+.action-box-head {
   padding: 10px 14px;
   background: var(--primary-light);
   display: flex;
@@ -715,7 +734,7 @@ canvas#telemetryChart {
   border-bottom: 1px solid rgba(37, 99, 235, 0.1);
 }
 
-.action-key-pill {
+.action-pill {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   font-weight: 700;
@@ -726,17 +745,17 @@ canvas#telemetryChart {
   border: 1px solid rgba(37, 99, 235, 0.25);
 }
 
-.confidence-rate {
+.action-conf {
   font-size: 11.5px;
   font-weight: 700;
   color: var(--primary-dark);
 }
 
-.action-card-body {
-  padding: 14px;
+.action-box-body {
+  padding: 14px 16px;
 }
 
-.action-card-body h3 {
+.action-box-body h3 {
   font-size: 15px;
   font-weight: 800;
   color: var(--text-main);
@@ -744,22 +763,22 @@ canvas#telemetryChart {
   letter-spacing: -0.2px;
 }
 
-.action-card-body p {
+.action-box-body p {
   font-size: 12.5px;
   color: var(--text-body);
   line-height: 1.5;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   APPLICATION QOS MATRIX
+   3GPP QOS READINESS MATRIX
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.qos-matrix {
+.qos-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
 }
 
-.qos-item {
+.qos-card {
   background: var(--surface-subtle);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
@@ -769,14 +788,14 @@ canvas#telemetryChart {
   gap: 2px;
 }
 
-.qos-title {
+.qos-name {
   font-size: 10px;
   font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
 }
 
-.qos-status {
+.qos-badge {
   font-size: 12px;
   font-weight: 700;
   display: flex;
@@ -784,7 +803,7 @@ canvas#telemetryChart {
   gap: 5px;
 }
 
-.qos-dot {
+.qos-indicator-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -794,19 +813,19 @@ canvas#telemetryChart {
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    ML FEATURE VECTOR VIEWER
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.vector-container {
+.vector-box {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.vector-header {
+.vector-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.vector-title {
+.vector-label {
   font-size: 10.5px;
   font-weight: 700;
   color: var(--text-muted);
@@ -814,7 +833,7 @@ canvas#telemetryChart {
   letter-spacing: 0.5px;
 }
 
-.copy-btn {
+.btn-copy {
   background: transparent;
   border: 1px solid var(--border-light);
   border-radius: 4px;
@@ -826,12 +845,12 @@ canvas#telemetryChart {
   transition: all 0.15s ease;
 }
 
-.copy-btn:hover {
+.btn-copy:hover {
   background: var(--surface-subtle);
   color: var(--text-main);
 }
 
-.vector-display {
+.vector-code {
   background: #f1f5f9;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
@@ -844,7 +863,7 @@ canvas#telemetryChart {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   EVENT TABLE
+   EVENT LOG DATA TABLE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .table-card {
   background: var(--surface);
@@ -854,8 +873,8 @@ canvas#telemetryChart {
   overflow: hidden;
 }
 
-.table-head {
-  padding: 14px 20px;
+.table-header {
+  padding: 16px 22px;
   background: #ffffff;
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
@@ -863,9 +882,9 @@ canvas#telemetryChart {
   justify-content: space-between;
 }
 
-.table-head h3 {
-  font-size: 13.5px;
-  font-weight: 700;
+.table-header h3 {
+  font-size: 14px;
+  font-weight: 800;
   color: var(--text-main);
   display: flex;
   align-items: center;
@@ -874,19 +893,19 @@ canvas#telemetryChart {
 
 .table-scroll {
   overflow-x: auto;
-  max-height: 220px;
+  max-height: 240px;
 }
 
-table.events-table {
+table.telemetry-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 12px;
   text-align: left;
 }
 
-table.events-table th {
+table.telemetry-table th {
   background: var(--surface-subtle);
-  padding: 8px 16px;
+  padding: 10px 16px;
   font-size: 10.5px;
   font-weight: 700;
   color: var(--text-muted);
@@ -898,25 +917,25 @@ table.events-table th {
   z-index: 2;
 }
 
-table.events-table td {
+table.telemetry-table td {
   padding: 10px 16px;
   border-bottom: 1px solid var(--border-subtle);
   color: var(--text-body);
   font-family: 'JetBrains Mono', monospace;
 }
 
-table.events-table tr:hover td {
+table.telemetry-table tr:hover td {
   background: var(--surface-subtle);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CONTROLS TOOLBAR
+   FOOTER TOOLBAR & CONTROLS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.control-deck {
+.toolbar {
   background: var(--surface);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-xl);
-  padding: 14px 22px;
+  padding: 14px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -925,13 +944,13 @@ table.events-table tr:hover td {
   box-shadow: var(--shadow-sm);
 }
 
-.button-row {
+.btn-group {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-button.btn-base {
+button.btn {
   border: none;
   border-radius: var(--radius-md);
   padding: 8px 16px;
@@ -945,82 +964,47 @@ button.btn-base {
   transition: all 0.15s ease;
 }
 
-.btn-primary-action {
+.btn-primary {
   background: var(--primary);
   color: #ffffff;
   box-shadow: 0 1px 3px rgba(37, 99, 235, 0.3);
 }
 
-.btn-primary-action:hover:not(:disabled) {
+.btn-primary:hover:not(:disabled) {
   background: var(--primary-dark);
   box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
   transform: translateY(-1px);
 }
 
-.btn-primary-action:disabled {
+.btn-primary:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-.btn-subtle-action {
+.btn-subtle {
   background: #ffffff;
   border: 1px solid var(--border-light);
   color: var(--text-body);
   box-shadow: var(--shadow-xs);
 }
 
-.btn-subtle-action:hover {
+.btn-subtle:hover {
   background: var(--surface-subtle);
   color: var(--text-main);
   border-color: var(--border-strong);
 }
 
-.btn-danger-action {
+.btn-danger {
   background: #ffffff;
   border: 1px solid var(--danger-border);
   color: var(--danger-dark);
 }
 
-.btn-danger-action:hover {
+.btn-danger:hover {
   background: var(--danger-bg);
 }
 
-.scenario-select {
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  color: var(--text-body);
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 8px 12px;
-  border-radius: var(--radius-md);
-  outline: none;
-  cursor: pointer;
-  box-shadow: var(--shadow-xs);
-  transition: border-color 0.15s;
-}
-
-.scenario-select:focus {
-  border-color: var(--primary);
-}
-
-.poll-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12.5px;
-  color: var(--text-body);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.poll-toggle input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--primary);
-}
-
-.loading-spinner {
+.spinner {
   display: none;
   width: 14px;
   height: 14px;
@@ -1034,7 +1018,7 @@ button.btn-base {
   to { transform: rotate(360deg); }
 }
 
-.toast-bar {
+.toast {
   position: fixed;
   bottom: 24px;
   right: 24px;
@@ -1044,7 +1028,7 @@ button.btn-base {
   border-radius: var(--radius-md);
   font-size: 12.5px;
   font-weight: 600;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-xl);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1055,19 +1039,19 @@ button.btn-base {
   z-index: 1000;
 }
 
-.toast-bar.visible {
+.toast.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.footer-note {
+.footer {
   text-align: center;
   font-size: 11.5px;
   color: var(--text-muted);
   line-height: 1.6;
 }
 
-.footer-note strong {
+.footer strong {
   color: var(--text-body);
 }
 </style>
@@ -1078,184 +1062,197 @@ button.btn-base {
      HEADER NAVIGATION
 ═══════════════════════════════════════════════════ -->
 <header class="navbar">
-  <div class="nav-left">
-    <div class="brand-badge">NS</div>
-    <div class="brand-meta">
-      <h1>NetSage <span>AI</span></h1>
-      <p>Intelligent Mobile Network Quality Prediction &amp; Adaptive Decision Engine</p>
+  <div class="nav-brand">
+    <div class="brand-icon">NS</div>
+    <div class="brand-text">
+      <h1>NetSage <span>AI</span> <span class="capstone-badge">Capstone Research</span></h1>
+      <p>Intelligent Mobile Network Quality Prediction &amp; Adaptive Connectivity</p>
     </div>
   </div>
 
-  <div class="nav-center-pill">
-    <div class="ping-item">
-      <div class="ping-dot" id="live-dot"></div>
+  <div class="nav-actions">
+    <div class="live-pill">
+      <div class="live-dot" id="live-dot"></div>
       <span id="conn-health">Connected · Telemetry Synchronized</span>
     </div>
-  </div>
-
-  <div class="nav-right">
-    <div class="live-indicator">
-      <span>●</span>
-      <span id="live-indicator-text">Live Streaming (3s)</span>
-    </div>
-    <div class="clock-text" id="live-clock">--:--:--</div>
+    <div class="clock-display" id="clock-display">--:--:--</div>
   </div>
 </header>
 
 <!-- ═══════════════════════════════════════════════════
-     MAIN APP CONTAINER
+     MAIN WORKSPACE
 ═══════════════════════════════════════════════════ -->
-<main class="app-container">
+<main class="page-container">
 
-  <!-- ── STAT OVERVIEW STRIP ──────────────────────── -->
-  <section class="overview-grid">
-    <div class="overview-col">
-      <div class="col-header">
-        <span>Active Physical Transport</span>
+  <!-- ── 4-KPI OVERVIEW RIBBON ────────────────────── -->
+  <section class="kpi-ribbon">
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span>Active Physical Route</span>
+        <span class="kpi-badge kpi-badge-blue" id="kpi-net-type">WIFI</span>
       </div>
-      <div class="col-main-val" id="strip-transport">
-        Wi-Fi (802.11ax / 5 GHz)
-        <span class="network-badge" id="strip-tag">WIFI</span>
+      <div class="kpi-value-row">
+        <span class="kpi-num" style="font-size:18px;" id="kpi-transport">Wi-Fi (802.11ax)</span>
       </div>
-      <div class="col-footer-sub" id="strip-validated">Validated Route · Unmetered Access</div>
+      <div class="kpi-footer" id="kpi-route-sub">
+        <span style="color:var(--success-dark); font-weight:700;">● Validated</span> · <span id="kpi-iface">wlan0</span>
+      </div>
     </div>
 
-    <div class="overview-col">
-      <div class="col-header">
-        <span>Interface &amp; Access Point</span>
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span>Quality Score</span>
+        <span class="kpi-badge kpi-badge-green" id="kpi-quality-badge">Optimal</span>
       </div>
-      <div class="col-main-val" style="font-size:17px;" id="strip-iface">wlan0</div>
-      <div class="col-footer-sub" id="strip-ap">NetSage-Research-5G · 5180 MHz</div>
+      <div class="kpi-value-row">
+        <span class="kpi-num" id="kpi-quality-num">--</span>
+        <span class="kpi-unit">/ 100</span>
+      </div>
+      <div class="kpi-footer" id="kpi-quality-sub">Evaluating link...</div>
     </div>
 
-    <div class="overview-col">
-      <div class="col-header">
-        <span>Computed Quality Score</span>
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span>Stability Index</span>
+        <span class="kpi-badge kpi-badge-purple" id="kpi-stab-badge">Low Jitter</span>
       </div>
-      <div class="col-main-val" style="font-size:26px; font-family:'JetBrains Mono', monospace;" id="strip-quality">
-        --
-        <span style="font-size:13px; font-weight:600; color:var(--text-subtle);">/ 100</span>
+      <div class="kpi-value-row">
+        <span class="kpi-num" id="kpi-stab-num">--</span>
+        <span class="kpi-unit">/ 100</span>
       </div>
-      <div class="col-footer-sub" id="strip-quality-sub" style="color:var(--success-dark); font-weight:700;">Evaluating Link...</div>
+      <div class="kpi-footer" id="kpi-stab-sub">Normal packet jitter</div>
     </div>
 
-    <div class="overview-col">
-      <div class="col-header">
-        <span>Telemetry Provenance</span>
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span>Telemetry Cadence</span>
+        <span class="kpi-badge kpi-badge-amber">Dynamic</span>
       </div>
-      <div class="col-main-val" style="font-size:15px; font-family:'JetBrains Mono', monospace;" id="strip-timestamp">Just now</div>
-      <div class="col-footer-sub" id="strip-sampling-rate">3000 ms streaming · Live micro-jitter</div>
+      <div class="kpi-value-row">
+        <span class="kpi-num" style="font-size:20px;" id="kpi-last-time">Just now</span>
+      </div>
+      <div class="kpi-footer">3000 ms cadence · Micro-jitter active</div>
     </div>
   </section>
 
   <!-- ── ONE-CLICK PRESET CHIPS BAR ───────────────── -->
-  <section class="quick-scenarios-bar">
-    <span class="qs-title">⚡ Instant Scenario Presets:</span>
-    <div class="qs-buttons-group">
-      <button class="qs-pill-btn active" id="btn-sc-wifi" onclick="simulateScenario('wifi_normal', this)">
+  <section class="scenario-bar">
+    <div class="scenario-label-wrap">
+      <span class="scenario-title">⚡ Instant Scenario Presets:</span>
+    </div>
+    <div class="scenario-pills">
+      <button class="scenario-btn active" id="btn-sc-wifi" onclick="simulateScenario('wifi_normal', this)">
         <span>🟢 Optimal Wi-Fi 5GHz</span>
       </button>
-      <button class="qs-pill-btn" id="btn-sc-handoff" onclick="simulateScenario('wifi_handoff_trigger', this)">
-        <span>🟡 Weak Wi-Fi (Handoff)</span>
+      <button class="scenario-btn" id="btn-sc-handoff" onclick="simulateScenario('wifi_handoff_trigger', this)">
+        <span>🟡 Weak Fringe Wi-Fi (Handoff)</span>
       </button>
-      <button class="qs-pill-btn" id="btn-sc-5g" onclick="simulateScenario('cellular_5g', this)">
+      <button class="scenario-btn" id="btn-sc-5g" onclick="simulateScenario('cellular_5g', this)">
         <span>⚡ 5G NR Standalone</span>
       </button>
-      <button class="qs-pill-btn" id="btn-sc-lte" onclick="simulateScenario('cellular_metered_poor', this)">
+      <button class="scenario-btn" id="btn-sc-lte" onclick="simulateScenario('cellular_metered_poor', this)">
         <span>🟠 Poor LTE (Throttled)</span>
       </button>
-      <button class="qs-pill-btn" id="btn-sc-off" onclick="simulateScenario('offline', this)">
+      <button class="scenario-btn" id="btn-sc-off" onclick="simulateScenario('offline', this)">
         <span>🔴 Offline Blackout</span>
       </button>
     </div>
+    <label class="sync-toggle-wrap">
+      <input type="checkbox" id="auto-sync-chk" checked onchange="toggleAutoPoll(this.checked)" />
+      <span>Auto-Sync Stream</span>
+    </label>
   </section>
 
-  <!-- ── 2-COLUMN OBSERVABILITY & DECISION LAYOUT ──── -->
-  <section class="dashboard-grid">
+  <!-- ── 2-COLUMN OBSERVABILITY GRID ──────────────── -->
+  <section class="main-grid">
 
-    <!-- LEFT COLUMN: REAL-TIME TELEMETRY & HISTORICAL CHART -->
-    <div class="pro-card">
+    <!-- LEFT COLUMN: REAL-TIME TELEMETRY & LIVE OSCILLOSCOPE -->
+    <div class="card">
       <div class="card-top">
-        <div class="card-title-group">
-          <div class="card-avatar avatar-blue">📡</div>
-          <h2 class="card-heading">Real-Time Mobile Telemetry</h2>
+        <div class="card-top-left">
+          <div class="card-icon icon-blue">📡</div>
+          <h2 class="card-title">Real-Time Mobile Telemetry</h2>
         </div>
-        <span class="card-meta-pill pill-blue" id="card-net-type">Wi-Fi</span>
+        <span class="kpi-badge kpi-badge-blue" id="pill-net-type">Wi-Fi 5GHz</span>
       </div>
 
-      <div class="card-content">
-        <!-- Telemetry 6-Grid -->
-        <div class="metrics-grid">
-          <div class="metric-cell">
-            <span class="cell-caption">Round-Trip Time (RTT)</span>
-            <div class="cell-data" id="val-latency">--<span class="cell-unit"> ms</span></div>
-            <span class="cell-aux" id="val-dns">DNS: -- ms | HTTP: -- ms</span>
+      <div class="card-body">
+        <!-- Telemetry 6-Tiles -->
+        <div class="telemetry-grid">
+          <div class="tile">
+            <span class="tile-caption">Round-Trip Time (RTT)</span>
+            <div class="tile-value" id="val-latency">--<span class="tile-unit"> ms</span></div>
+            <span class="tile-sub" id="val-dns">DNS: -- ms | HTTP: -- ms</span>
           </div>
 
-          <div class="metric-cell">
-            <span class="cell-caption">Downlink Throughput</span>
-            <div class="cell-data" id="val-throughput">--<span class="cell-unit"> Mbps</span></div>
-            <span class="cell-aux" id="val-dl-est">Link Est: -- Mbps</span>
+          <div class="tile">
+            <span class="tile-caption">Downlink Throughput</span>
+            <div class="tile-value" id="val-throughput">--<span class="tile-unit"> Mbps</span></div>
+            <span class="tile-sub" id="val-dl-est">Link Est: -- Mbps</span>
           </div>
 
-          <div class="metric-cell">
-            <span class="cell-caption">RF Signal Strength</span>
-            <div class="cell-data" id="val-signal">--<span class="cell-unit"> dBm</span></div>
-            <span class="cell-aux" id="val-bars">-- Bars</span>
+          <div class="tile">
+            <span class="tile-caption">RF Signal Strength</span>
+            <div class="tile-value" id="val-signal">--<span class="tile-unit"> dBm</span></div>
+            <span class="tile-sub" id="val-bars">-- Bars</span>
           </div>
 
-          <div class="metric-cell">
-            <span class="cell-caption">Uplink Capacity</span>
-            <div class="cell-data" id="val-uplink">--<span class="cell-unit"> Mbps</span></div>
-            <span class="cell-aux" id="val-link-spd">Link Speed: -- Mbps</span>
+          <div class="tile">
+            <span class="tile-caption">Uplink Capacity</span>
+            <div class="tile-value" id="val-uplink">--<span class="tile-unit"> Mbps</span></div>
+            <span class="tile-sub" id="val-link-spd">Link Speed: -- Mbps</span>
           </div>
 
-          <div class="metric-cell">
-            <span class="cell-caption">Data Policy / Metering</span>
-            <div class="cell-data" style="font-size:18px;" id="val-metered">Unmetered</div>
-            <span class="cell-aux">Background Traffic Unrestricted</span>
+          <div class="tile">
+            <span class="tile-caption">Data Policy / Metering</span>
+            <div class="tile-value" style="font-size:17px;" id="val-metered">Unmetered</div>
+            <span class="tile-sub">Background traffic unrestricted</span>
           </div>
 
-          <div class="metric-cell">
-            <span class="cell-caption">RF Spectrum Band</span>
-            <div class="cell-data" style="font-size:18px;" id="val-freq">5 GHz</div>
-            <span class="cell-aux" id="val-freq-sub">High-Capacity Channel</span>
+          <div class="tile">
+            <span class="tile-caption">RF Spectrum Band</span>
+            <div class="tile-value" style="font-size:17px;" id="val-freq">5 GHz</div>
+            <span class="tile-sub" id="val-freq-sub">5180 MHz Channel</span>
           </div>
         </div>
 
-        <!-- Telemetry Trendline Chart Section -->
-        <div class="chart-box">
-          <div class="chart-header-row">
-            <div class="chart-title-wrap">
-              <span class="chart-title">Continuous Observation Trend</span>
-              <span class="live-stream-badge">
-                <span class="live-stream-dot"></span>
-                <span id="chart-stream-status">Dynamic Stream</span>
+        <!-- Live Streaming Chart -->
+        <div class="chart-section">
+          <div class="chart-header">
+            <div class="chart-title-group">
+              <span class="chart-heading">Continuous Telemetry Trend</span>
+              <span class="chart-live-badge">
+                <span class="live-dot" style="width:5px;height:5px;"></span>
+                <span>Streaming Live</span>
               </span>
             </div>
-            <div class="seg-control">
-              <button class="seg-btn active" onclick="switchMetric('latency', event)">Latency</button>
-              <button class="seg-btn" onclick="switchMetric('signal', event)">Signal</button>
-              <button class="seg-btn" onclick="switchMetric('throughput', event)">Throughput</button>
+            <div class="chart-controls">
+              <button class="chart-tab-btn active" onclick="switchMetric('latency', event)">Latency</button>
+              <button class="chart-tab-btn" onclick="switchMetric('signal', event)">Signal</button>
+              <button class="chart-tab-btn" onclick="switchMetric('throughput', event)">Throughput</button>
             </div>
           </div>
 
-          <div class="stat-strip-compact">
+          <div class="chart-stats-strip">
             <div>
-              <div class="sc-item-label">Window Min</div>
-              <div class="sc-item-val" id="chart-min">--</div>
+              <div class="cs-label">Window Min</div>
+              <div class="cs-val" id="chart-min">--</div>
             </div>
             <div>
-              <div class="sc-item-label">Window Avg</div>
-              <div class="sc-item-val" id="chart-avg" style="color:var(--primary-dark);">--</div>
+              <div class="cs-label">Window Avg</div>
+              <div class="cs-val" id="chart-avg" style="color:var(--primary-dark);">--</div>
             </div>
             <div>
-              <div class="sc-item-label">Window Max</div>
-              <div class="sc-item-val" id="chart-max">--</div>
+              <div class="cs-label">Window Max</div>
+              <div class="cs-val" id="chart-max">--</div>
+            </div>
+            <div>
+              <div class="cs-label">Samples</div>
+              <div class="cs-val" id="chart-samples">--</div>
             </div>
           </div>
 
-          <div class="canvas-container">
+          <div class="canvas-wrap">
             <canvas id="telemetryChart"></canvas>
             <div class="chart-tooltip" id="chart-tooltip"></div>
           </div>
@@ -1264,41 +1261,41 @@ button.btn-base {
     </div>
 
     <!-- RIGHT COLUMN: DECISION ENGINE, GAUGES & ML CLASSIFIER -->
-    <div class="pro-card">
+    <div class="card">
       <div class="card-top">
-        <div class="card-title-group">
-          <div class="card-avatar avatar-purple">🧠</div>
-          <h2 class="card-heading">Adaptive Decision &amp; Machine Learning</h2>
+        <div class="card-top-left">
+          <div class="card-icon icon-purple">🧠</div>
+          <h2 class="card-title">Adaptive Decision Engine</h2>
         </div>
-        <span class="card-meta-pill pill-purple" id="ml-badge">Pure-Kotlin RF</span>
+        <span class="kpi-badge kpi-badge-purple" id="ml-badge">Random Forest ML</span>
       </div>
 
-      <div class="card-content">
-        <!-- Gauges Row -->
-        <div class="gauges-row">
-          <div class="gauge-panel">
-            <div class="ring-visual">
+      <div class="card-body">
+        <!-- SVG Gauge Rings -->
+        <div class="gauges-container">
+          <div class="gauge-box">
+            <div class="gauge-svg-wrap">
               <svg viewBox="0 0 60 60">
-                <circle class="ring-track" cx="30" cy="30" r="25"></circle>
-                <circle class="ring-progress" id="ring-quality-arc" cx="30" cy="30" r="25"></circle>
+                <circle class="gauge-track" cx="30" cy="30" r="25"></circle>
+                <circle class="gauge-fill" id="ring-quality-arc" cx="30" cy="30" r="25"></circle>
               </svg>
-              <div class="ring-center-number" id="val-quality-score">--</div>
+              <div class="gauge-center-text" id="val-quality-score">--</div>
             </div>
-            <div class="gauge-details">
+            <div class="gauge-meta">
               <h4>Quality Index</h4>
               <p id="quality-grade">Assessing...</p>
             </div>
           </div>
 
-          <div class="gauge-panel">
-            <div class="ring-visual">
+          <div class="gauge-box">
+            <div class="gauge-svg-wrap">
               <svg viewBox="0 0 60 60">
-                <circle class="ring-track" cx="30" cy="30" r="25"></circle>
-                <circle class="ring-progress" id="ring-stab-arc" cx="30" cy="30" r="25" style="stroke:var(--primary);"></circle>
+                <circle class="gauge-track" cx="30" cy="30" r="25"></circle>
+                <circle class="gauge-fill" id="ring-stab-arc" cx="30" cy="30" r="25" style="stroke:var(--primary);"></circle>
               </svg>
-              <div class="ring-center-number" id="val-stability">--</div>
+              <div class="gauge-center-text" id="val-stability">--</div>
             </div>
-            <div class="gauge-details">
+            <div class="gauge-meta">
               <h4>Stability Index</h4>
               <p id="stability-grade" style="color:var(--primary-dark);">Evaluating...</p>
             </div>
@@ -1306,65 +1303,65 @@ button.btn-base {
         </div>
 
         <!-- Adaptive Action Recommendation Banner -->
-        <div class="action-card" id="action-card">
-          <div class="action-card-header" id="action-header">
-            <span class="action-key-pill" id="val-action-key">MAINTAIN_CURRENT</span>
-            <span class="confidence-rate" id="val-confidence">Confidence: 95%</span>
+        <div class="action-box" id="action-box">
+          <div class="action-box-head" id="action-header">
+            <span class="action-pill" id="val-action-key">MAINTAIN_CURRENT</span>
+            <span class="action-conf" id="val-confidence">Confidence: 95%</span>
           </div>
-          <div class="action-card-body">
+          <div class="action-box-body">
             <h3 id="val-action-title">Maintain Active Physical Link</h3>
             <p id="val-action-desc">Telemetry parameters demonstrate optimal round-trip latency, high downlink throughput, and sustained signal strength.</p>
           </div>
         </div>
 
-        <!-- Application QoS Readiness Matrix -->
+        <!-- 3GPP QoS Compliance Matrix -->
         <div>
-          <div style="font-size:10.5px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">
+          <div style="font-size:10.5px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">
             Service Class Suitability Matrix (3GPP QoS)
           </div>
-          <div class="qos-matrix">
-            <div class="qos-item">
-              <span class="qos-title">VoIP / Audio</span>
-              <span class="qos-status" id="qos-voip"><span class="qos-dot"></span> Excellent</span>
+          <div class="qos-grid">
+            <div class="qos-card">
+              <span class="qos-name">VoIP / Audio</span>
+              <span class="qos-badge" id="qos-voip"><span class="qos-indicator-dot"></span> Excellent</span>
             </div>
-            <div class="qos-item">
-              <span class="qos-title">4K Streaming</span>
-              <span class="qos-status" id="qos-stream"><span class="qos-dot"></span> Ready</span>
+            <div class="qos-card">
+              <span class="qos-name">4K Streaming</span>
+              <span class="qos-badge" id="qos-stream"><span class="qos-indicator-dot"></span> Ready</span>
             </div>
-            <div class="qos-item">
-              <span class="qos-title">Cloud Gaming</span>
-              <span class="qos-status" id="qos-game"><span class="qos-dot"></span> Optimal</span>
+            <div class="qos-card">
+              <span class="qos-name">Cloud Gaming</span>
+              <span class="qos-badge" id="qos-game"><span class="qos-indicator-dot"></span> Optimal</span>
             </div>
-            <div class="qos-item">
-              <span class="qos-title">Large Payload</span>
-              <span class="qos-status" id="qos-bulk"><span class="qos-dot"></span> High-Speed</span>
+            <div class="qos-card">
+              <span class="qos-name">Large Payload</span>
+              <span class="qos-badge" id="qos-bulk"><span class="qos-indicator-dot"></span> High-Speed</span>
             </div>
           </div>
         </div>
 
         <!-- ML 8-Feature Vector Viewer -->
-        <div class="vector-container">
-          <div class="vector-header">
-            <span class="vector-title">Random Forest Feature Vector (8 Inputs)</span>
-            <button class="copy-btn" onclick="copyFeatureVector()">📋 Copy JSON</button>
+        <div class="vector-box">
+          <div class="vector-head">
+            <span class="vector-label">Random Forest Input Vector (8 Dimensions)</span>
+            <button class="btn-copy" onclick="copyFeatureVector()">📋 Copy JSON</button>
           </div>
-          <div class="vector-display" id="val-feature-vector">[ Loading model feature array... ]</div>
+          <div class="vector-code" id="val-feature-vector">[ Telemetry Array Pending ]</div>
         </div>
       </div>
     </div>
 
   </section>
 
-  <!-- ── RECENT TELEMETRY LOGS (DATA TABLE) ────────── -->
+  <!-- ── RECENT TELEMETRY SNAPSHOT TABLE ──────────── -->
   <section class="table-card">
-    <div class="table-head">
+    <div class="table-header">
       <h3>
-        <span>📋 Telemetry Observation Stream</span>
+        <span>📋 Live Telemetry Event Stream</span>
       </h3>
       <span style="font-size:11.5px; color:var(--text-muted);" id="table-count">Displaying streaming snapshots</span>
     </div>
     <div class="table-scroll">
-      <table class="events-table">
+      <table class="telemetry-table">
         <thead>
           <tr>
             <th>Time</th>
@@ -1373,7 +1370,7 @@ button.btn-base {
             <th>RTT (ms)</th>
             <th>Throughput</th>
             <th>Signal</th>
-            <th>Score</th>
+            <th>Link State</th>
             <th>Adaptive Action</th>
           </tr>
         </thead>
@@ -1386,53 +1383,41 @@ button.btn-base {
     </div>
   </section>
 
-  <!-- ── CONTROLS TOOLBAR ─────────────────────────── -->
-  <section class="control-deck">
-    <div class="button-row">
-      <button class="btn-base btn-primary-action" onclick="runActiveProbe()" id="probe-btn">
-        <span class="loading-spinner" id="probe-spinner"></span>
+  <!-- ── TOOLBAR & CONTROLS ───────────────────────── -->
+  <section class="toolbar">
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="runActiveProbe()" id="probe-btn">
+        <span class="spinner" id="probe-spinner"></span>
         <span>⚡ Trigger Active Network Probe</span>
       </button>
-      <button class="btn-base btn-subtle-action" onclick="fetchStatus()">
+      <button class="btn btn-subtle" onclick="fetchStatus()">
         <span>↻ Force Refresh</span>
       </button>
-      <button class="btn-base btn-danger-action" onclick="clearHistory()">
+      <button class="btn btn-danger" onclick="clearHistory()">
         <span>🗑 Clear History</span>
       </button>
     </div>
 
-    <div class="button-row" style="flex-wrap:wrap;">
-      <label for="scenario-select" style="font-size:12px; font-weight:700; color:var(--text-body);">Scenario Dropdown:</label>
-      <select id="scenario-select" class="scenario-select" onchange="simulateScenario(this.value)">
-        <option value="wifi_normal">🟢 Optimal Wi-Fi 5 GHz</option>
-        <option value="wifi_handoff_trigger">🟡 Weak Wi-Fi — Trigger Handoff</option>
-        <option value="cellular_5g">⚡ 5G NR Standalone (Ultra-Reliable)</option>
-        <option value="cellular_metered_poor">🟠 Poor LTE — Throttle Background</option>
-        <option value="offline">🔴 Complete Offline Blackout</option>
-      </select>
-
-      <label class="poll-toggle">
-        <input type="checkbox" id="auto-poll-chk" checked onchange="toggleAutoPoll(this.checked)">
-        <span>Auto-Sync Stream (3s)</span>
-      </label>
+    <div class="btn-group" style="flex-wrap:wrap;">
+      <span style="font-size:12px; color:var(--text-muted); font-weight:600;">NetSage AI Autonomous Decision Pipeline</span>
     </div>
   </section>
 
   <!-- ── FOOTER ───────────────────────────────────── -->
-  <footer class="footer-note">
-    <strong>NetSage AI</strong> · Intelligent Mobile Network Quality Prediction &amp; Adaptive Connectivity Decision Support System<br />
-    B.E. CSE-AI · Mobile Computing Capstone · Real-Time Dynamic Telemetry Stream &amp; Random Forest ML Pipeline
+  <footer class="footer">
+    <strong>NetSage AI</strong> · Intelligent Mobile Network Quality Prediction &amp; Adaptive Decision Engine<br />
+    B.E. CSE-AI · Mobile Computing Capstone Research · Pure-Kotlin / Python ML Telemetry Pipeline
   </footer>
 
 </main>
 
 <!-- ── TOAST NOTIFICATION ────────────────────────── -->
-<div class="toast-bar" id="toast-bar">
-  <span id="toast-message">Notification</span>
+<div class="toast" id="toast-bar">
+  <span id="toast-msg">Notification</span>
 </div>
 
 <!-- ═══════════════════════════════════════════════════
-     CLIENT ENGINE & DASHBOARD SCRIPT
+     CLIENT ENGINE & DASHBOARD LOGIC
 ═══════════════════════════════════════════════════ -->
 <script>
 /* ── State Store ────────────────────────────────────── */
@@ -1440,12 +1425,12 @@ let currentMetric = 'latency';
 let historyPoints = [];
 let autoPollTimer = null;
 let currentFeatureVector = null;
-let chartCoords = []; // cached coordinates for tooltip hit testing
+let chartCoords = [];
 let chartHoverIdx = null;
 
 /* ── Live Monotonic Clock ───────────────────────────── */
 (function initClock() {
-  const clockEl = document.getElementById('live-clock');
+  const clockEl = document.getElementById('clock-display');
   function tick() {
     clockEl.textContent = new Date().toLocaleTimeString('en-IN', { hour12: false });
   }
@@ -1453,10 +1438,10 @@ let chartHoverIdx = null;
   tick();
 })();
 
-/* ── Toast Notification Dispatcher ──────────────────── */
+/* ── Toast Dispatcher ───────────────────────────────── */
 function showToast(msg) {
   const toast = document.getElementById('toast-bar');
-  const toastMsg = document.getElementById('toast-message');
+  const toastMsg = document.getElementById('toast-msg');
   toastMsg.textContent = msg;
   toast.classList.add('visible');
   setTimeout(() => toast.classList.remove('visible'), 2800);
@@ -1487,7 +1472,7 @@ async function runActiveProbe() {
     if (!res.ok) throw new Error(`Probe failed with HTTP ${res.status}`);
     const data = await res.json();
     renderDashboard(data);
-    showToast('⚡ Active Probe successfully completed (DNS + HTTP + Throughput)');
+    showToast('⚡ Active Probe successfully completed (DNS + HTTP 204 + Throughput)');
   } catch (err) {
     alert(`Active probe failed: ${err.message}`);
   } finally {
@@ -1498,11 +1483,9 @@ async function runActiveProbe() {
 
 async function simulateScenario(scenarioName, elementBtn) {
   if (elementBtn) {
-    document.querySelectorAll('.qs-pill-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.scenario-btn').forEach(btn => btn.classList.remove('active'));
     elementBtn.classList.add('active');
   }
-  const selectEl = document.getElementById('scenario-select');
-  if (selectEl) selectEl.value = scenarioName;
 
   try {
     const res = await fetch('/api/simulate', {
@@ -1546,37 +1529,33 @@ function renderDashboard({ observation: obs, decision: dec, history }) {
   document.getElementById('conn-health').textContent = 'Connected · Telemetry Synchronized';
   document.getElementById('live-dot').style.backgroundColor = 'var(--success)';
 
-  /* 1. Header Overview Strip */
-  document.getElementById('strip-transport').innerHTML =
-    `${obs.transport_name || 'Cellular'} <span class="network-badge" id="strip-tag">${obs.network_type || 'NET'}</span>`;
-  document.getElementById('strip-validated').textContent =
-    `${obs.is_validated ? 'Validated Route' : 'Unvalidated Route'} · ${obs.is_metered ? 'Metered Spectrum' : 'Unmetered Access'}`;
-  document.getElementById('strip-iface').textContent = obs.interface_name || 'None';
-  document.getElementById('strip-ap').textContent =
-    obs.wifi_ssid ? `${obs.wifi_ssid} · ${obs.wifi_freq_mhz || 5180} MHz` : (obs.carrier ? `${obs.carrier} Spectrum` : 'No Active Carrier');
-  document.getElementById('strip-timestamp').textContent =
+  /* 1. Header & Top Ribbon */
+  document.getElementById('kpi-transport').textContent = obs.transport_name || 'Cellular';
+  document.getElementById('kpi-net-type').textContent = obs.network_type || 'NET';
+  document.getElementById('pill-net-type').textContent = `${obs.network_type || 'NET'} Spectrum`;
+  document.getElementById('kpi-iface').textContent = obs.interface_name || 'None';
+  document.getElementById('kpi-last-time').textContent =
     new Date(obs.timestamp || Date.now()).toLocaleTimeString('en-IN', { hour12: false });
-  document.getElementById('card-net-type').textContent = obs.network_type || 'WIFI';
 
-  /* 2. Telemetry Tiles */
+  /* 2. Telemetry 6-Tiles */
   const lat = obs.latency_ms;
   document.getElementById('val-latency').innerHTML =
-    `${lat !== null && lat !== undefined ? lat : '—'}<span class="cell-unit"> ms</span>`;
+    `${lat !== null && lat !== undefined ? lat : '—'}<span class="tile-unit"> ms</span>`;
   document.getElementById('val-dns').textContent =
     `DNS: ${obs.dns_ms !== null && obs.dns_ms !== undefined ? obs.dns_ms : '—'} ms | HTTP: ${obs.http_ms !== null && obs.http_ms !== undefined ? obs.http_ms : '—'} ms`;
 
   document.getElementById('val-throughput').innerHTML =
-    `${obs.throughput_mbps !== null && obs.throughput_mbps !== undefined ? obs.throughput_mbps : '—'}<span class="cell-unit"> Mbps</span>`;
+    `${obs.throughput_mbps !== null && obs.throughput_mbps !== undefined ? obs.throughput_mbps : '—'}<span class="tile-unit"> Mbps</span>`;
   document.getElementById('val-dl-est').textContent =
     `Link Est: ${obs.downstream_kbps ? (obs.downstream_kbps / 1000).toFixed(1) + ' Mbps' : '—'}`;
 
   document.getElementById('val-signal').innerHTML =
-    `${obs.signal_dbm !== null && obs.signal_dbm !== undefined ? obs.signal_dbm : '—'}<span class="cell-unit"> dBm</span>`;
+    `${obs.signal_dbm !== null && obs.signal_dbm !== undefined ? obs.signal_dbm : '—'}<span class="tile-unit"> dBm</span>`;
   document.getElementById('val-bars').textContent =
     `${obs.signal_level !== null && obs.signal_level !== undefined ? obs.signal_level : '—'}/4 Bars (${obs.signal_desc || 'Signal State'})`;
 
   document.getElementById('val-uplink').innerHTML =
-    `${obs.upstream_kbps ? (obs.upstream_kbps / 1000).toFixed(1) : '—'}<span class="cell-unit"> Mbps</span>`;
+    `${obs.upstream_kbps ? (obs.upstream_kbps / 1000).toFixed(1) : '—'}<span class="tile-unit"> Mbps</span>`;
   document.getElementById('val-link-spd').textContent =
     `Link Speed: ${obs.wifi_link_speed_mbps ? obs.wifi_link_speed_mbps + ' Mbps' : (obs.downstream_kbps ? (obs.downstream_kbps / 1000).toFixed(0) + ' Mbps' : '—')}`;
 
@@ -1587,52 +1566,58 @@ function renderDashboard({ observation: obs, decision: dec, history }) {
   document.getElementById('val-freq').textContent =
     obs.wifi_freq_mhz ? (obs.wifi_freq_mhz >= 5000 ? '5 GHz' : '2.4 GHz') : (obs.network_type === 'CELLULAR' ? 'Cellular Radio' : 'Local Interface');
   document.getElementById('val-freq-sub').textContent =
-    obs.wifi_freq_mhz ? `${obs.wifi_freq_mhz} MHz Channel Spectrum` : (obs.carrier ? `${obs.carrier} Radio Access` : 'Standard Spectrum');
+    obs.wifi_freq_mhz ? `${obs.wifi_freq_mhz} MHz Channel Spectrum` : (obs.carrier ? `${obs.carrier} Spectrum` : 'Standard Radio');
 
   /* 3. Decision Engine & Quality Score Gauges */
   const qScore = dec.quality_score;
-  const CIRC = 157; // 2 * PI * 25
+  const CIRC = 157;
   const qArc = document.getElementById('ring-quality-arc');
   qArc.style.strokeDashoffset = CIRC - (CIRC * Math.max(0, Math.min(100, qScore)) / 100);
 
   let qColor = 'var(--success)';
-  let qGrade = 'Optimal Connection';
+  let qGrade = 'Optimal Link';
   let qColorDark = 'var(--success-dark)';
+  let qBadgeClass = 'kpi-badge-green';
   let actionBorder = 'var(--primary)';
   let actionHeaderBg = 'var(--primary-light)';
 
   if (qScore < 40) {
     qColor = 'var(--danger)';
-    qGrade = 'Degraded / Critical Link';
+    qGrade = 'Degraded / Critical';
     qColorDark = 'var(--danger-dark)';
+    qBadgeClass = 'kpi-badge-amber';
     actionBorder = 'var(--danger)';
     actionHeaderBg = 'var(--danger-bg)';
   } else if (qScore < 70) {
     qColor = 'var(--warning)';
-    qGrade = 'Fair / Fluctuating Link';
+    qGrade = 'Fair / Fluctuating';
     qColorDark = 'var(--warning-dark)';
+    qBadgeClass = 'kpi-badge-amber';
     actionBorder = 'var(--warning)';
     actionHeaderBg = 'var(--warning-bg)';
   }
 
   qArc.style.stroke = qColor;
   document.getElementById('val-quality-score').textContent = qScore;
-  document.getElementById('strip-quality').innerHTML =
-    `${qScore}<span style="font-size:13px; font-weight:600; color:var(--text-subtle);">/ 100</span>`;
+  document.getElementById('kpi-quality-num').textContent = qScore;
   document.getElementById('quality-grade').textContent = qGrade;
   document.getElementById('quality-grade').style.color = qColorDark;
-  document.getElementById('strip-quality-sub').textContent = qGrade;
-  document.getElementById('strip-quality-sub').style.color = qColorDark;
+  document.getElementById('kpi-quality-sub').textContent = qGrade;
+  document.getElementById('kpi-quality-sub').style.color = qColorDark;
+  document.getElementById('kpi-quality-badge').textContent = qScore >= 70 ? 'Optimal' : (qScore >= 40 ? 'Fair' : 'Critical');
+  document.getElementById('kpi-quality-badge').className = `kpi-badge ${qBadgeClass}`;
 
   /* Stability Index Ring */
   const stab = dec.stability_index;
   const stabArc = document.getElementById('ring-stab-arc');
   stabArc.style.strokeDashoffset = CIRC - (CIRC * Math.max(0, Math.min(100, stab)) / 100);
   document.getElementById('val-stability').textContent = stab;
+  document.getElementById('kpi-stab-num').textContent = stab;
   document.getElementById('stability-grade').textContent = stab >= 75 ? 'Low Jitter / High Stability' : 'Fluctuating / High Drift';
+  document.getElementById('kpi-stab-sub').textContent = stab >= 75 ? 'Low Jitter / High Stability' : 'Fluctuating / High Drift';
 
   /* 4. Action Recommendation Banner */
-  const actionCard = document.getElementById('action-card');
+  const actionCard = document.getElementById('action-box');
   const actionHeader = document.getElementById('action-header');
   actionCard.style.borderLeftColor = actionBorder;
   actionHeader.style.backgroundColor = actionHeaderBg;
@@ -1670,13 +1655,13 @@ function updateQosMatrix(lat, tp, score) {
 
   function setBadge(el, ok, warn) {
     if (ok) {
-      el.innerHTML = '<span class="qos-dot" style="background:var(--success);"></span> Optimal';
+      el.innerHTML = '<span class="qos-indicator-dot" style="background:var(--success);"></span> Optimal';
       el.style.color = 'var(--success-dark)';
     } else if (warn) {
-      el.innerHTML = '<span class="qos-dot" style="background:var(--warning);"></span> Degraded';
+      el.innerHTML = '<span class="qos-indicator-dot" style="background:var(--warning);"></span> Degraded';
       el.style.color = 'var(--warning-dark)';
     } else {
-      el.innerHTML = '<span class="qos-dot" style="background:var(--danger);"></span> Unfit';
+      el.innerHTML = '<span class="qos-indicator-dot" style="background:var(--danger);"></span> Unfit';
       el.style.color = 'var(--danger-dark)';
     }
   }
@@ -1722,7 +1707,7 @@ function renderTelemetryTable(history) {
 /* ── Canvas Smooth Bezier Trend Chart with Tooltip & Live Pulse ── */
 function switchMetric(metricName, evt) {
   currentMetric = metricName;
-  document.querySelectorAll('.seg-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.chart-tab-btn').forEach(btn => btn.classList.remove('active'));
   if (evt && evt.target) evt.target.classList.add('active');
   drawChart();
 }
@@ -1734,7 +1719,7 @@ function drawChart() {
   const dpr = window.devicePixelRatio || 1;
   const rect = canvas.getBoundingClientRect();
   const W = rect.width;
-  const H = 180;
+  const H = 200;
 
   canvas.width = W * dpr;
   canvas.height = H * dpr;
@@ -1751,7 +1736,7 @@ function drawChart() {
 
   if (vals.length < 2) {
     ctx.fillStyle = '#94a3b8';
-    ctx.font = '500 12.5px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '500 13px "Plus Jakarta Sans", sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText('Accumulating telemetry probe stream...', W / 2, H / 2);
     return;
@@ -1765,8 +1750,9 @@ function drawChart() {
   document.getElementById('chart-min').textContent = `${minV.toFixed(1)} ${unit}`;
   document.getElementById('chart-avg').textContent = `${avgV.toFixed(1)} ${unit}`;
   document.getElementById('chart-max').textContent = `${maxV.toFixed(1)} ${unit}`;
+  document.getElementById('chart-samples').textContent = `${vals.length} pts`;
 
-  // Give 10% breathing room to ensure visible curves even on micro-fluctuations
+  // Breathing margin so micro-fluctuations create visible wave aesthetics
   const span = maxV - minV;
   const minSpan = currentMetric === 'latency' ? 12 : (currentMetric === 'signal' ? 6 : 4);
   const effectiveSpan = Math.max(span, minSpan);
@@ -1779,14 +1765,14 @@ function drawChart() {
   // Background horizontal grid lines with Y values
   ctx.strokeStyle = '#e2e8f0';
   ctx.lineWidth = 1;
-  ctx.font = '500 9.5px "JetBrains Mono", monospace';
+  ctx.font = '500 10px "JetBrains Mono", monospace';
   ctx.fillStyle = '#94a3b8';
   ctx.textAlign = 'left';
 
   for (let i = 1; i <= 3; i++) {
     const y = (H / 4) * i;
     ctx.beginPath();
-    ctx.moveTo(35, y);
+    ctx.moveTo(42, y);
     ctx.lineTo(W - 16, y);
     ctx.stroke();
 
@@ -1794,10 +1780,10 @@ function drawChart() {
     ctx.fillText(`${valAtY.toFixed(0)} ${unit}`, 6, y + 3);
   }
 
-  const PAD_LEFT = 42;
-  const PAD_RIGHT = 32;
+  const PAD_LEFT = 48;
+  const PAD_RIGHT = 36;
   const BOTTOM_SPACE = 26;
-  const usableH = H - BOTTOM_SPACE - 20;
+  const usableH = H - BOTTOM_SPACE - 22;
   const stepX = (W - PAD_LEFT - PAD_RIGHT) / (vals.length - 1);
 
   chartCoords = vals.map((v, i) => ({
@@ -1874,12 +1860,12 @@ function drawChart() {
   }
 
   // Draw X-Axis relative time labels
-  ctx.font = '600 10px "Plus Jakarta Sans", sans-serif';
+  ctx.font = '600 10.5px "Plus Jakarta Sans", sans-serif';
   ctx.fillStyle = '#94a3b8';
   ctx.textAlign = 'center';
-  const timeLabels = ['-45s', '-30s', '-15s', 'Now'];
-  for (let t = 0; t < 4; t++) {
-    const tx = PAD_LEFT + (t / 3.0) * (W - PAD_LEFT - PAD_RIGHT);
+  const timeLabels = ['-60s', '-45s', '-30s', '-15s', 'Now (Live)'];
+  for (let t = 0; t < 5; t++) {
+    const tx = PAD_LEFT + (t / 4.0) * (W - PAD_LEFT - PAD_RIGHT);
     ctx.fillText(timeLabels[t], tx, H - 8);
   }
 
@@ -1893,7 +1879,7 @@ function drawChart() {
     ctx.moveTo(hp.x, 14);
     ctx.lineTo(hp.x, H - BOTTOM_SPACE);
     ctx.stroke();
-    ctx.setLineDash([]); // reset
+    ctx.setLineDash([]);
 
     ctx.beginPath();
     ctx.arc(hp.x, hp.y, 6, 0, Math.PI * 2);
@@ -1917,7 +1903,6 @@ function drawChart() {
     const rect = canvas.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
 
-    // Find closest point by x
     let closestIdx = 0;
     let closestDist = Math.abs(chartCoords[0].x - mouseX);
     for (let i = 1; i < chartCoords.length; i++) {
@@ -1954,12 +1939,8 @@ function drawChart() {
 /* ── Polling Scheduler ──────────────────────────────── */
 function toggleAutoPoll(enabled) {
   if (autoPollTimer) clearInterval(autoPollTimer);
-  const badge = document.getElementById('live-indicator-text');
   if (enabled) {
     autoPollTimer = setInterval(fetchStatus, 3000);
-    badge.textContent = 'Live Streaming (3s)';
-  } else {
-    badge.textContent = 'Stream Paused';
   }
 }
 
